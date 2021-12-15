@@ -4,7 +4,7 @@ school bot은 [Python](https://www.python.org) 3.9.7에서 [discord.py](https://
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [국토교통부_버스도착정보](https://www.data.go.kr/data/15000757/openapi.do))
 
 
- 오늘의 급식, 버스 도착 예정 시간 확인 등이 가능합니다.
+ 오늘의 급식, 내일의 급식, 버스 도착 예정 시간 확인 등이 가능합니다.
 
 
 ## 주요기능
