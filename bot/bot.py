@@ -171,11 +171,11 @@ async def 집버스(ctx):
     h_response = requests.get(Bus_URL, params=h_Bus_params)
 
     h_bus_xml = ET.fromstring(h_response.content)
-    h_item_tag = h_bus_xml.findall('.//item')
+    h_item_tag = h_bus_xml.findall('.//item[1]')
 
     for h_i in h_item_tag:
-        h_time = int(h_i.find('arrtime').text)
-        h_cnt = (f"(남은 정거장 수 : {h_i.find('arrprevstationcnt').text})")
+        h_time = int(h_i.findtext('arrtime'))
+        h_cnt = (f"(남은 정거장 수 : {h_i.findtext('arrprevstationcnt')})")
 
     h_sec = h_time % 60
     h_min = int(h_time / 60 % 60)
@@ -197,11 +197,11 @@ async def 학교버스(ctx):
     s_response = requests.get(Bus_URL, params=s_Bus_params)
 
     s_bus_xml = ET.fromstring(s_response.content)
-    s_item_tag = s_bus_xml.findall('.//item')
+    s_item_tag = s_bus_xml.findall('.//item[1]')
 
     for s_i in s_item_tag:
-        s_time = int(s_i.find('arrtime').text)
-        s_cnt = (f"(남은 정거장 수 : {s_i.find('arrprevstationcnt').text})")
+        s_time = int(s_i.findtext('arrtime'))
+        s_cnt = (f"(남은 정거장 수 : {s_i.findtext('arrprevstationcnt')})")
 
     s_sec = s_time % 60
     s_min = int(s_time / 60 % 60)
