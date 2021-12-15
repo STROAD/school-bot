@@ -96,7 +96,7 @@ async def 도움말(ctx):
     embed.add_field(name="2. **현재 시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="3. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
     embed.add_field(name="4. **시간표**", value="`!시간표`", inline=False)
-    embed.add_field(name="5. **급식정보 확인**", value="`!급식\n!오늘급식`", inline=False)
+    embed.add_field(name="5. **급식정보 확인**", value="`!급식\n!오늘급식\n내일급식`", inline=False)
     embed.add_field(name="5. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
 
     await ctx.send(embed=embed)
@@ -108,7 +108,7 @@ async def info(ctx):
     embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
-    embed.add_field(name="*버전* : 1.0.0", value=f"[GitHub]({GitHub})", inline=False)
+    embed.add_field(name="*버전* : 1.1.0", value=f"[GitHub]({GitHub})", inline=False)
 
     await ctx.send(embed=embed)
 
