@@ -158,9 +158,32 @@ async def 급식(ctx):
     await ctx.send(embed=embed)
 
 
+@bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
+async def 내일급식(ctx):
+    tomorrow_time = int(datetime.now().strftime("%Y%m%d")) + 1
+    tomorrow_y = int(datetime.now().strftime("%Y")) + 1
+    tomorrow_m = int(datetime.now().strftime("%m")) + 1
+    tomorrow_d = int(datetime.now().strftime("%d")) + 1
+
+    meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
+&Type=json&pIndex=1&pSize=100\
+&ATPT_OFCDC_SC_CODE=#수정하기#&SD_SCHUL_CODE=#수정하기#\
+&MMEAL_SC_CODE=2&MLSV_YMD={tomorrow_time}"
+
+    response = requests.get(meal_url).json()
+
+    meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
+    meal = re.sub('(<([^>]+)>)', '\n', meal)
+    meal = re.sub('[0-9.]', '', meal)
+
+    embed = discord.Embed(title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***", description="\u200B")
+    embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
+
+    await ctx.send(embed=embed)
+
+
 Bus_URL = 'http://openapi.tago.go.kr/openapi/service/\
 ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList'
-
 
 @bot.command(aliases=['집', 'ㅈ'])
 async def 집버스(ctx):
