@@ -178,8 +178,8 @@ async def 급식(ctx):
 @bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
 async def 내일급식(ctx):
     tomorrow_time = int(datetime.now().strftime("%Y%m%d")) + 1
-    tomorrow_y = int(datetime.now().strftime("%Y")) + 1
-    tomorrow_m = int(datetime.now().strftime("%m")) + 1
+    tomorrow_y = int(datetime.now().strftime("%Y"))
+    tomorrow_m = int(datetime.now().strftime("%m"))
     tomorrow_d = int(datetime.now().strftime("%d")) + 1
 
     meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
