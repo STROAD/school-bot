@@ -91,7 +91,7 @@ async def 도움말(ctx):
     embed.add_field(name="2. **현재 시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="3. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
     embed.add_field(name="4. **시간표**", value="`!시간표`", inline=False)
-    embed.add_field(name="5. **급식정보 확인**", value="`!급식\n!오늘급식\n내일급식`", inline=False)
+    embed.add_field(name="5. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
     embed.add_field(name="5. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
 
     await ctx.send(embed=embed)
