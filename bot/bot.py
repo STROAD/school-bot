@@ -75,7 +75,7 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 """
 
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix="!")
 
 
 @bot.event
@@ -97,7 +97,7 @@ async def 도움말(ctx):
     await ctx.send(embed=embed)
 
 
-@bot.command(aliases=['정보'])
+@bot.command(aliases=["정보"])
 async def info(ctx):
     embed = discord.Embed(title="***정보***", description="\u200B", inline=False)
     embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
@@ -108,9 +108,9 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 
-@bot.command(aliases=['시간', '현재시간'])
+@bot.command(aliases=["시간", "현재시간"])
 async def time(ctx):
-    apm = datetime.now().strftime('%p')
+    apm = datetime.now().strftime("%p")
 
     if apm == "AM":
         ampm = "오전"
@@ -120,13 +120,17 @@ async def time(ctx):
     days = ["월", "화", "수", "목", "금", "토", "일"]
     d = datetime.now().weekday()
 
-    await ctx.send(datetime.now().strftime(f'> **%Y년 %m월 %d일 \
-{days[d]}요일**\n> **{ampm} %I시 %M분 %S초**'))
+    await ctx.send(
+        datetime.now().strftime(
+            f"> **%Y년 %m월 %d일 \
+{days[d]}요일**\n> **{ampm} %I시 %M분 %S초**"
+        )
+    )
 
 
-@bot.command(aliases=['핑'])
+@bot.command(aliases=["핑"])
 async def ping(ctx):
-    await ctx.send(f"Ping : {round(bot.latency * 1000)}ms")
+    await ctx.send(f"> **Ping : {round(bot.latency * 1000)}ms**")
 
 
 @bot.command()
@@ -134,12 +138,12 @@ async def 시간표(ctx):
     await ctx.send(schedule)
 
 
-@bot.command(aliases=['오늘급식'])
+@bot.command(aliases=["오늘급식"])
 async def 급식(ctx):
     today_time = datetime.now().strftime("%Y%m%d")
-    y = datetime.now().strftime('%Y')
-    m = datetime.now().strftime('%m')
-    d = datetime.now().strftime('%d')
+    y = datetime.now().strftime("%Y")
+    m = datetime.now().strftime("%m")
+    d = datetime.now().strftime("%d")
 
     meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
 &Type=json&pIndex=1&pSize=100\
@@ -149,8 +153,8 @@ async def 급식(ctx):
     response = requests.get(meal_url).json()
 
     meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
-    meal = re.sub('(<([^>]+)>)', '\n', meal)
-    meal = re.sub('[0-9.]', '', meal)
+    meal = re.sub("(<([^>]+)>)", "\n", meal)
+    meal = re.sub("[0-9.]", "", meal)
 
     embed = discord.Embed(title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B")
     embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
@@ -173,32 +177,40 @@ async def 내일급식(ctx):
     response = requests.get(meal_url).json()
 
     meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
-    meal = re.sub('(<([^>]+)>)', '\n', meal)
-    meal = re.sub('[0-9.]', '', meal)
+    meal = re.sub("(<([^>]+)>)", "\n", meal)
+    meal = re.sub("[0-9.]", "", meal)
 
-    embed = discord.Embed(title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***", description="\u200B")
+    embed = discord.Embed(
+        title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
+        description="\u200B",
+    )
     embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
 
     await ctx.send(embed=embed)
 
 
-Bus_URL = 'http://openapi.tago.go.kr/openapi/service/\
-ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList'
+Bus_URL = "http://openapi.tago.go.kr/openapi/service/\
+ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
-@bot.command(aliases=['집', 'ㅈ'])
+
+@bot.command(aliases=["집", "ㅈ"])
 async def 집버스(ctx):
 
-    h_Bus_params = {'serviceKey': bus_KEY, 'cityCode': '#수정하기#',
-                    'nodeId': '#수정하기#', 'routeId': '#수정하기#'}
+    h_Bus_params = {
+        "serviceKey": bus_KEY,
+        "cityCode": "#수정하기#",
+        "nodeId": "#수정하기#",
+        "routeId": "#수정하기#",
+    }
 
     h_response = requests.get(Bus_URL, params=h_Bus_params)
 
     h_bus_xml = ET.fromstring(h_response.content)
-    h_item_tag = h_bus_xml.findall('.//item[1]')
+    h_item_tag = h_bus_xml.findall(".//item[1]")
 
     for h_i in h_item_tag:
-        h_time = int(h_i.findtext('arrtime'))
-        h_cnt = (f"(남은 정거장 수 : {h_i.findtext('arrprevstationcnt')})")
+        h_time = int(h_i.findtext("arrtime"))
+        h_cnt = f"(남은 정거장 수 : {h_i.findtext('arrprevstationcnt')})"
 
     h_sec = h_time % 60
     h_min = int(h_time / 60 % 60)
@@ -206,25 +218,31 @@ async def 집버스(ctx):
     embed = discord.Embed(title="***버스 도착 정보***", description="\u200B")
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**버스 도착 예정 시간**", value=(f"{h_min}분 {h_sec}초 {h_cnt}"), inline=False)
+    embed.add_field(
+        name="**버스 도착 예정 시간**", value=(f"{h_min}분 {h_sec}초 {h_cnt}"), inline=False
+    )
 
     await ctx.send(embed=embed)
 
 
-@bot.command(aliases=['학교', 'ㅎㄱ'])
+@bot.command(aliases=["학교", "ㅎㄱ"])
 async def 학교버스(ctx):
 
-    s_Bus_params = {'serviceKey': bus_KEY, 'cityCode': '#수정하기#',
-                    'nodeId': '#수정하기#', 'routeId': '#수정하기#'}
+    s_Bus_params = {
+        "serviceKey": bus_KEY,
+        "cityCode": "#수정하기#",
+        "nodeId": "#수정하기#",
+        "routeId": "#수정하기#",
+    }
 
     s_response = requests.get(Bus_URL, params=s_Bus_params)
 
     s_bus_xml = ET.fromstring(s_response.content)
-    s_item_tag = s_bus_xml.findall('.//item[1]')
+    s_item_tag = s_bus_xml.findall(".//item[1]")
 
     for s_i in s_item_tag:
-        s_time = int(s_i.findtext('arrtime'))
-        s_cnt = (f"(남은 정거장 수 : {s_i.findtext('arrprevstationcnt')})")
+        s_time = int(s_i.findtext("arrtime"))
+        s_cnt = f"(남은 정거장 수 : {s_i.findtext('arrprevstationcnt')})"
 
     s_sec = s_time % 60
     s_min = int(s_time / 60 % 60)
@@ -232,7 +250,9 @@ async def 학교버스(ctx):
     embed = discord.Embed(title="***버스 도착 정보***", description="\u200B")
     embed.add_field(name="**버스 정보**", value="#수정하기#)", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**버스 도착 예정 시간**", value=(f"{s_min}분 {s_sec}초 {s_cnt}"), inline=False)
+    embed.add_field(
+        name="**버스 도착 예정 시간**", value=(f"{s_min}분 {s_sec}초 {s_cnt}"), inline=False
+    )
 
     await ctx.send(embed=embed)
 
