@@ -1,13 +1,13 @@
-import discord
+import nextcord
 
 
 # 토큰
 Token = ""  # 이곳에 자신의 디스코드 봇 토큰 넣기
 
 
-#디스코드 봇 상태 설정
-bot_status = discord.Status.online
-bot_activity = discord.Activity(type=discord.ActivityType.listening , name="!도움말")
+# 디스코드 봇 상태 설정
+bot_status = nextcord.Status.online
+bot_activity = nextcord.Activity(type=nextcord.ActivityType.listening, name="!도움말")
 
 
 # 인증키
