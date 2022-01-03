@@ -93,7 +93,7 @@ async def on_ready():
 
 @bot.command()
 async def 도움말(ctx):
-    embed = nextcord.Embed(title="***도움말***", description="명령어 리스트")
+    embed = nextcord.Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **현재 시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="3. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
@@ -106,11 +106,11 @@ async def 도움말(ctx):
 
 @bot.command(aliases=["정보"])
 async def info(ctx):
-    embed = nextcord.Embed(title="***정보***", description="\u200B", inline=False)
+    embed = nextcord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
     embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
-    embed.add_field(name="*버전* : 2.0.0", value=f"[GitHub]({GitHub})", inline=False)
+    embed.add_field(name="*버전* : 2.0.1", value=f"[GitHub]({GitHub})", inline=False)
 
     await ctx.send(embed=embed)
 
@@ -177,7 +177,9 @@ async def 급식(ctx):
     meal = re.sub("[0-9.]", "", meal)
 
     embed = nextcord.Embed(
-        title=f"***{today_y}년 {today_m}월 {today_d}일 급식***", description="\u200B"
+        title=f"***{today_y}년 {today_m}월 {today_d}일 급식***",
+        description="\u200B",
+        colour=0xB0BEC5,
     )
     embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
 
@@ -205,6 +207,7 @@ async def 내일급식(ctx):
     embed = nextcord.Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
         description="\u200B",
+        colour=0xB0BEC5,
     )
     embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
 
@@ -237,7 +240,9 @@ async def 집버스(ctx):
     h_sec = h_time % 60
     h_min = int(h_time / 60 % 60)
 
-    embed = nextcord.Embed(title="***버스 도착 정보***", description="\u200B")
+    embed = nextcord.Embed(
+        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
+    )
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
@@ -269,7 +274,9 @@ async def 학교버스(ctx):
     s_sec = s_time % 60
     s_min = int(s_time / 60 % 60)
 
-    embed = nextcord.Embed(title="***버스 도착 정보***", description="\u200B")
+    embed = nextcord.Embed(
+        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
+    )
     embed.add_field(name="**버스 정보**", value="#수정하기#)", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
