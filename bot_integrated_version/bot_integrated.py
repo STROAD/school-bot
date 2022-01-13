@@ -237,6 +237,28 @@ Bus_URL = "http://openapi.tago.go.kr/openapi/service/\
 ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
 
+# 버스정보 가져오기
+async def bus_parser(Bus_params):
+    global minute, second, cnt
+
+    # 버스 정보 받아오기
+    response = requests.get(Bus_URL, params=Bus_params)
+
+    # 버스 도착 예정 시간, 남은 정류장 추출
+    bus_xml = ET.fromstring(response.content)
+    item_tag = bus_xml.findall(".//item[1]")
+
+    for i in item_tag:
+        arrtime = int(i.findtext("arrtime"))
+        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
+
+    # 도착 예정 시간 초를 분,초로 변환
+    second = arrtime % 60
+    minute = int(arrtime / 60 % 60)
+
+    return minute, second, cnt
+
+
 # 집버스
 @bot.command(aliases=["집", "ㅈ"])
 async def 집버스(ctx):
