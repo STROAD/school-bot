@@ -79,9 +79,11 @@ GitHub = "https://github.com/STROAD/school-bot"
 ##############################################################################
 
 
+# 명령어 접두어
 bot = commands.Bot(command_prefix="!")
 
 
+# 봇 시작
 @bot.event
 async def on_ready():
     await bot.change_presence(
@@ -91,6 +93,7 @@ async def on_ready():
     print(f"{bot.user.name}({bot.user.id}) 연결 완료")
 
 
+# 도움말
 @bot.command()
 async def 도움말(ctx):
     embed = nextcord.Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
@@ -104,6 +107,7 @@ async def 도움말(ctx):
     await ctx.send(embed=embed)
 
 
+# 정보
 @bot.command(aliases=["정보"])
 async def info(ctx):
     embed = nextcord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
@@ -115,15 +119,19 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 
+# 시간
 @bot.command(aliases=["시간", "현재시간"])
 async def time(ctx):
+    # 오전 오후 변수
     apm = datetime.now().strftime("%p")
 
+    # 오전 오후 구하기
     if apm == "AM":
         ampm = "오전"
     else:
         ampm = "오후"
 
+    # 요일 구하기
     days = ["월", "화", "수", "목", "금", "토", "일"]
     d = datetime.now().weekday()
 
@@ -135,11 +143,13 @@ async def time(ctx):
     )
 
 
+# 핑
 @bot.command(aliases=["핑"])
 async def ping(ctx):
     await ctx.send(f"> **Ping : {round(bot.latency * 1000)}ms**")
 
 
+# 시간표
 @bot.command()
 async def 시간표(ctx):
     await ctx.send(
@@ -158,20 +168,25 @@ async def 시간표(ctx):
     )
 
 
+# 오늘급식
 @bot.command(aliases=["오늘급식"])
 async def 급식(ctx):
+    # 현재 날짜 구하기
     today_time = datetime.now().strftime("%Y%m%d")
     today_y = datetime.now().strftime("%Y")
     today_m = datetime.now().strftime("%m")
     today_d = datetime.now().strftime("%d")
 
+    # 급식 API URL
     meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
 &Type=json&pIndex=1&pSize=100\
 &ATPT_OFCDC_SC_CODE=#수정하기#&SD_SCHUL_CODE=#수정하기#\
 &MMEAL_SC_CODE=2&MLSV_YMD={today_time}"
 
+    # 급식정보 json으로 받아오기
     response = requests.get(meal_url).json()
 
+    # 급식메뉴만 추출
     meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
     meal = re.sub("(<([^>]+)>)", "\n", meal)
     meal = re.sub("[0-9.]", "", meal)
@@ -186,20 +201,25 @@ async def 급식(ctx):
     await ctx.send(embed=embed)
 
 
+# 내일급식
 @bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
 async def 내일급식(ctx):
+    # 내일 날짜 구하기
     tomorrow_time = int(datetime.now().strftime("%Y%m%d")) + 1
     tomorrow_y = int(datetime.now().strftime("%Y"))
     tomorrow_m = int(datetime.now().strftime("%m"))
     tomorrow_d = int(datetime.now().strftime("%d")) + 1
 
+    # 급식 API URL
     meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
 &Type=json&pIndex=1&pSize=100\
 &ATPT_OFCDC_SC_CODE=#수정하기#&SD_SCHUL_CODE=#수정하기#\
 &MMEAL_SC_CODE=2&MLSV_YMD={tomorrow_time}"
 
+    # 급식정보 json으로 받아오기
     response = requests.get(meal_url).json()
 
+    # 급식메뉴만 추출
     meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
     meal = re.sub("(<([^>]+)>)", "\n", meal)
     meal = re.sub("[0-9.]", "", meal)
@@ -214,13 +234,15 @@ async def 내일급식(ctx):
     await ctx.send(embed=embed)
 
 
+# 버스 API URL
 Bus_URL = "http://openapi.tago.go.kr/openapi/service/\
 ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
 
+# 집버스
 @bot.command(aliases=["집", "ㅈ"])
 async def 집버스(ctx):
-
+    # 버스 파라미터
     h_Bus_params = {
         "serviceKey": bus_KEY,
         "cityCode": "#수정하기#",
@@ -228,8 +250,10 @@ async def 집버스(ctx):
         "routeId": "#수정하기#",
     }
 
+    # 버스 정보 받아오기
     h_response = requests.get(Bus_URL, params=h_Bus_params)
 
+    # 버스 도착 예정 시간, 남은 정류장 추출
     h_bus_xml = ET.fromstring(h_response.content)
     h_item_tag = h_bus_xml.findall(".//item[1]")
 
@@ -237,6 +261,7 @@ async def 집버스(ctx):
         h_time = int(h_i.findtext("arrtime"))
         h_cnt = f"(남은 정거장 수 : {h_i.findtext('arrprevstationcnt')})"
 
+    # 도착 예정 시간 초를 분,초로 변환
     h_sec = h_time % 60
     h_min = int(h_time / 60 % 60)
 
@@ -252,9 +277,10 @@ async def 집버스(ctx):
     await ctx.send(embed=embed)
 
 
+# 학교 버스
 @bot.command(aliases=["학교", "ㅎㄱ"])
 async def 학교버스(ctx):
-
+    # 버스 파라미터
     s_Bus_params = {
         "serviceKey": bus_KEY,
         "cityCode": "#수정하기#",
@@ -262,8 +288,10 @@ async def 학교버스(ctx):
         "routeId": "#수정하기#",
     }
 
+    # 버스 정보 받아오기
     s_response = requests.get(Bus_URL, params=s_Bus_params)
 
+    # 버스 도착 예정 시간, 남은 정류장 추출
     s_bus_xml = ET.fromstring(s_response.content)
     s_item_tag = s_bus_xml.findall(".//item[1]")
 
@@ -271,6 +299,7 @@ async def 학교버스(ctx):
         s_time = int(s_i.findtext("arrtime"))
         s_cnt = f"(남은 정거장 수 : {s_i.findtext('arrprevstationcnt')})"
 
+    # 도착 예정 시간 초를 분,초로 변환
     s_sec = s_time % 60
     s_min = int(s_time / 60 % 60)
 
