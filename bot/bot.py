@@ -221,7 +221,7 @@ ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 @bot.command(aliases=["집", "ㅈ"])
 async def 집버스(ctx):
     # 버스 파라미터
-    h_Bus_params = {
+    Bus_params = {
         "serviceKey": bus_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
@@ -229,19 +229,19 @@ async def 집버스(ctx):
     }
 
     # 버스 정보 받아오기
-    h_response = requests.get(Bus_URL, params=h_Bus_params)
+    response = requests.get(Bus_URL, params=Bus_params)
 
     # 버스 도착 예정 시간, 남은 정류장 추출
-    h_bus_xml = ET.fromstring(h_response.content)
-    h_item_tag = h_bus_xml.findall(".//item[1]")
+    bus_xml = ET.fromstring(response.content)
+    item_tag = bus_xml.findall(".//item[1]")
 
-    for h_i in h_item_tag:
-        h_time = int(h_i.findtext("arrtime"))
-        h_cnt = f"(남은 정거장 수 : {h_i.findtext('arrprevstationcnt')})"
+    for i in item_tag:
+        time = int(i.findtext("arrtime"))
+        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
 
     # 도착 예정 시간 초를 분,초로 변환
-    h_sec = h_time % 60
-    h_min = int(h_time / 60 % 60)
+    sec = time % 60
+    min = int(time / 60 % 60)
 
     embed = nextcord.Embed(
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
@@ -249,7 +249,7 @@ async def 집버스(ctx):
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{h_min}분 {h_sec}초 {h_cnt}"), inline=False
+        name="**버스 도착 예정 시간**", value=(f"{min}분 {sec}초 {cnt}"), inline=False
     )
 
     await ctx.send(embed=embed)
@@ -259,7 +259,7 @@ async def 집버스(ctx):
 @bot.command(aliases=["학교", "ㅎㄱ"])
 async def 학교버스(ctx):
     # 버스 파라미터
-    s_Bus_params = {
+    Bus_params = {
         "serviceKey": bus_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
@@ -267,19 +267,19 @@ async def 학교버스(ctx):
     }
 
     # 버스 정보 받아오기
-    s_response = requests.get(Bus_URL, params=s_Bus_params)
+    response = requests.get(Bus_URL, params=Bus_params)
 
     # 버스 도착 예정 시간, 남은 정류장 추출
-    s_bus_xml = ET.fromstring(s_response.content)
-    s_item_tag = s_bus_xml.findall(".//item[1]")
+    bus_xml = ET.fromstring(response.content)
+    item_tag = bus_xml.findall(".//item[1]")
 
-    for s_i in s_item_tag:
-        s_time = int(s_i.findtext("arrtime"))
-        s_cnt = f"(남은 정거장 수 : {s_i.findtext('arrprevstationcnt')})"
+    for i in item_tag:
+        time = int(i.findtext("arrtime"))
+        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
 
     # 도착 예정 시간 초를 분,초로 변환
-    s_sec = s_time % 60
-    s_min = int(s_time / 60 % 60)
+    sec = time % 60
+    min = int(time / 60 % 60)
 
     embed = nextcord.Embed(
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
@@ -287,7 +287,7 @@ async def 학교버스(ctx):
     embed.add_field(name="**버스 정보**", value="#수정하기#)", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{s_min}분 {s_sec}초 {s_cnt}"), inline=False
+        name="**버스 도착 예정 시간**", value=(f"{min}분 {sec}초 {cnt}"), inline=False
     )
 
     await ctx.send(embed=embed)
