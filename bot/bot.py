@@ -250,20 +250,7 @@ async def 집버스(ctx):
         "routeId": "#수정하기#",
     }
 
-    # 버스 정보 받아오기
-    response = requests.get(Bus_URL, params=Bus_params)
-
-    # 버스 도착 예정 시간, 남은 정류장 추출
-    bus_xml = ET.fromstring(response.content)
-    item_tag = bus_xml.findall(".//item[1]")
-
-    for i in item_tag:
-        time = int(i.findtext("arrtime"))
-        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
-
-    # 도착 예정 시간 초를 분,초로 변환
-    sec = time % 60
-    min = int(time / 60 % 60)
+    await bus_parser(Bus_params)
 
     embed = nextcord.Embed(
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
@@ -271,7 +258,7 @@ async def 집버스(ctx):
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{min}분 {sec}초 {cnt}"), inline=False
+        name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
 
     await ctx.send(embed=embed)
@@ -288,28 +275,15 @@ async def 학교버스(ctx):
         "routeId": "#수정하기#",
     }
 
-    # 버스 정보 받아오기
-    response = requests.get(Bus_URL, params=Bus_params)
-
-    # 버스 도착 예정 시간, 남은 정류장 추출
-    bus_xml = ET.fromstring(response.content)
-    item_tag = bus_xml.findall(".//item[1]")
-
-    for i in item_tag:
-        time = int(i.findtext("arrtime"))
-        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
-
-    # 도착 예정 시간 초를 분,초로 변환
-    sec = time % 60
-    min = int(time / 60 % 60)
+    await bus_parser(Bus_params)
 
     embed = nextcord.Embed(
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
     )
-    embed.add_field(name="**버스 정보**", value="#수정하기#)", inline=False)
+    embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
     embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{min}분 {sec}초 {cnt}"), inline=False
+        name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
 
     await ctx.send(embed=embed)
