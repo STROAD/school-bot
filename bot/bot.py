@@ -206,7 +206,7 @@ async def 급식(ctx):
     embed = nextcord.Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
     )
-    embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
+    embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
 
     await ctx.send(embed=embed)
 
@@ -238,7 +238,7 @@ async def 내일급식(ctx):
         description="\u200B",
         colour=0xB0BEC5,
     )
-    embed.add_field(name=f"**{meal}**", value="(중식)", inline=False)
+    embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
 
     await ctx.send(embed=embed)
 
