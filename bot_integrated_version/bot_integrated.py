@@ -256,8 +256,6 @@ async def bus_parser(Bus_params):
     second = arrtime % 60
     minute = int(arrtime / 60 % 60)
 
-    return minute, second, cnt
-
 
 # 집버스
 @bot.command(aliases=["집", "ㅈ"])
