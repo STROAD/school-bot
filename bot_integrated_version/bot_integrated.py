@@ -168,9 +168,11 @@ async def 시간표(ctx):
     )
 
 
+# 급식 API URL
 meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 
 
+# 급식정보 가져오기
 async def meal_parser(meal_params):
     global meal, msm
 
@@ -218,13 +220,8 @@ async def 급식(ctx):
         "MLSV_YMD": today_time,
     }
 
-    # 급식정보 json으로 받아오기
-    response = requests.get(meal_url).json()
-
-    # 급식메뉴만 추출
-    meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
-    meal = re.sub("(<([^>]+)>)", "\n", meal)
-    meal = re.sub("[0-9.]", "", meal)
+    # meal_parser함수 실행
+    await meal_parser(meal_params)
 
     embed = nextcord.Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
@@ -253,13 +250,8 @@ async def 내일급식(ctx):
         "MLSV_YMD": tomorrow_time,
     }
 
-    # 급식정보 json으로 받아오기
-    response = requests.get(meal_url).json()
-
-    # 급식메뉴만 추출
-    meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
-    meal = re.sub("(<([^>]+)>)", "\n", meal)
-    meal = re.sub("[0-9.]", "", meal)
+    # meal_parser함수 실행
+    await meal_parser(meal_params)
 
     embed = nextcord.Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
