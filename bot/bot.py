@@ -188,11 +188,15 @@ async def 급식(ctx):
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
 
-    # 급식 API URL
-    meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
-&Type=json&pIndex=1&pSize=100\
-&ATPT_OFCDC_SC_CODE=#수정하기#&SD_SCHUL_CODE=#수정하기#\
-&MMEAL_SC_CODE=2&MLSV_YMD={today_time}"
+    # 급식 파라미터
+    meal_params = {
+        "key": meal_KEY,
+        "Type": "xml",
+        "ATPT_OFCDC_SC_CODE": "N10",
+        "SD_SCHUL_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": "#수정하기#",
+        "MLSV_YMD": today_time,
+    }
 
     # 급식정보 json으로 받아오기
     response = requests.get(meal_url).json()
@@ -219,11 +223,15 @@ async def 내일급식(ctx):
     tomorrow_m = int(datetime.now().strftime("%m"))
     tomorrow_d = int(datetime.now().strftime("%d")) + 1
 
-    # 급식 API URL
-    meal_url = f"https://open.neis.go.kr/hub/mealServiceDietInfo?key={meal_KEY}\
-&Type=json&pIndex=1&pSize=100\
-&ATPT_OFCDC_SC_CODE=#수정하기#&SD_SCHUL_CODE=#수정하기#\
-&MMEAL_SC_CODE=2&MLSV_YMD={tomorrow_time}"
+    # 급식 파라미터
+    meal_params = {
+        "key": meal_KEY,
+        "Type": "xml",
+        "ATPT_OFCDC_SC_CODE": "N10",
+        "SD_SCHUL_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": "#수정하기#",
+        "MLSV_YMD": tomorrow_time,
+    }
 
     # 급식정보 json으로 받아오기
     response = requests.get(meal_url).json()
