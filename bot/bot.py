@@ -148,6 +148,37 @@ async def 시간표(ctx):
     await ctx.send(schedule)
 
 
+meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
+
+
+async def meal_parser(meal_params):
+    global meal, msm
+
+    # 급식정보 XML로 받아오기
+    response = requests.get(meal_url, meal_params)
+    meal_xml = ET.fromstring(response.content)
+
+    # 호출결과 코드 찾기
+    for i in meal_xml.iter("RESULT"):
+        code = i.findtext("CODE")
+
+    # 급식메뉴가 존재하는지 확인
+    # 급식이있을경우
+    if code == "INFO-000":
+        # 급식메뉴만 추출
+        meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
+        meal = re.sub("(<([^>]+)>)", "\n", meal)
+        meal = re.sub("[0-9.]", "", meal)
+
+        for i in meal_xml.iter("row"):
+            msm = i.findtext("MMEAL_SC_NM")
+
+    # 급식이 없을경우
+    elif code == "INFO-200":
+        meal = "급식이 없습니다."
+        msm = " "
+
+
 # 오늘급식
 @bot.command(aliases=["오늘급식"])
 async def 급식(ctx):
