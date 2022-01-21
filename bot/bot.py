@@ -112,6 +112,12 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 
+# 인사
+@bot.command(aliases=["안녕", "반가워", "Hi"])
+async def hi(message):
+    await message.send(f"{message.author.mention}**님 안녕하세요!**")
+
+
 # 시간
 @bot.command(aliases=["시간", "현재시간"])
 async def time(ctx):
