@@ -107,7 +107,7 @@ async def info(ctx):
     embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
-    embed.add_field(name="*버전* : 2.0.1", value=f"[GitHub]({GitHub})", inline=False)
+    embed.add_field(name="*버전* : 2.0.2", value=f"[GitHub]({GitHub})", inline=False)
 
     await ctx.send(embed=embed)
 
