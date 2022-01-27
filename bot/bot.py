@@ -175,7 +175,7 @@ async def meal_parser(meal_params):
     # 급식이있을경우
     if code == "INFO-000":
         # 급식메뉴만 추출
-        meal = str(response["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
+        meal = str(meal_xml.findtext(".//DDISH_NM"))
         meal = re.sub("(<([^>]+)>)", "\n", meal)
         meal = re.sub("[0-9.]", "", meal)
 
