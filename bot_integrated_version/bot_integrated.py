@@ -189,11 +189,11 @@ async def meal_parser(meal_params):
 
     # 호출결과 코드 찾기
     for i in meal_xml.iter("RESULT"):
-        code = i.findtext("CODE")
+        result_code = i.findtext("CODE")
 
     # 급식메뉴가 존재하는지 확인
     # 급식이있을경우
-    if code == "INFO-000":
+    if result_code == "INFO-000":
         # 급식메뉴만 추출
         meal = str(meal_xml.findtext(".//DDISH_NM"))
         meal = re.sub("(<([^>]+)>)", "\n", meal)
@@ -203,7 +203,7 @@ async def meal_parser(meal_params):
             msm = i.findtext("MMEAL_SC_NM")
 
     # 급식이 없을경우
-    elif code == "INFO-200":
+    elif result_code == "INFO-200":
         meal = "급식이 없습니다."
         msm = " "
 
