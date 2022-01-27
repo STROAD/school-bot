@@ -188,8 +188,7 @@ async def meal_parser(meal_params):
     meal_xml = ET.fromstring(response.content)
 
     # 호출결과 코드 찾기
-    for i in meal_xml.iter("RESULT"):
-        result_code = i.findtext("CODE")
+    result_code = meal_xml.findtext(".//CODE")
 
     # 급식메뉴가 존재하는지 확인
     # 급식이있을경우
