@@ -198,8 +198,8 @@ async def meal_parser(meal_params):
         meal = re.sub("(<([^>]+)>)", "\n", meal)
         meal = re.sub("[0-9.]", "", meal)
 
-        for i in meal_xml.iter("row"):
-            msm = i.findtext("MMEAL_SC_NM")
+        # 식사명 찾기
+        msm = meal_xml.findtext(".//MMEAL_SC_NM")
 
     # 급식이 없을경우
     elif result_code == "INFO-200":
