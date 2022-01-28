@@ -122,8 +122,8 @@ async def info(ctx):
 
 # 인사
 @bot.command(aliases=["안녕", "반가워", "Hi"])
-async def hi(message):
-    await message.send(f"{message.author.mention}**님 안녕하세요!**")
+async def hi(ctx):
+    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**")
 
 
 # 시간
