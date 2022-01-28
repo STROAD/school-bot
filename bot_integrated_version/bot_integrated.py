@@ -278,10 +278,8 @@ ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 async def bus_parser(Bus_params):
     global minute, second, cnt, nodenm
 
-    # 버스 정보 받아오기
-    response = requests.get(Bus_URL, params=Bus_params)
-
     # 버스 정보 XML로 받아오기
+    response = requests.get(Bus_URL, params=Bus_params)
     bus_xml = ET.fromstring(response.content)
 
     # 도착 예정 시간
