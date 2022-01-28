@@ -256,7 +256,7 @@ ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
 # 버스정보 가져오기
 async def bus_parser(Bus_params):
-    global minute, second, cnt
+    global minute, second, cnt, nodenm
 
     # 버스 정보 받아오기
     response = requests.get(Bus_URL, params=Bus_params)
@@ -268,6 +268,8 @@ async def bus_parser(Bus_params):
     arrtime = int(bus_xml.findtext(".//arrtime"))
     # 남은 정거장 수
     cnt = f"(남은 정거장 수 : {bus_xml.findtext('.//arrprevstationcnt')})"
+    # 정거장 이름
+    nodenm = bus_xml.findtext(".//nodenm")
 
     # 도착 예정 시간 초를 분,초로 변환
     second = arrtime % 60
@@ -291,7 +293,7 @@ async def 집버스(ctx):
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
     )
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
+    embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
         name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
@@ -316,7 +318,7 @@ async def 학교버스(ctx):
         title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
     )
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**정거장 정보**", value="#수정하기#", inline=False)
+    embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
         name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
