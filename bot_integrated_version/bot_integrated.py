@@ -105,7 +105,7 @@ async def 도움말(ctx):
     embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 정보
@@ -123,7 +123,7 @@ async def info(ctx):
 # 인사
 @bot.command(aliases=["안녕", "반가워", "Hi"])
 async def hi(ctx):
-    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**")
+    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**", reference=ctx.message)
 
 
 # 시간
@@ -234,7 +234,7 @@ async def 급식(ctx):
     )
     embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 내일급식
@@ -266,7 +266,7 @@ async def 내일급식(ctx):
     )
     embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 버스 API URL
@@ -316,7 +316,7 @@ async def 집버스(ctx):
         name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 학교 버스
@@ -341,7 +341,7 @@ async def 학교버스(ctx):
         name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
     )
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 bot.run(Token)
