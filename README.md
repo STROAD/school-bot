@@ -1,6 +1,6 @@
 # school-bot
 
-school bot은 [Python](https://www.python.org) 3.10.1에서 [nextcord](https://github.com/nextcord/nextcord) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
+school bot은 [Python](https://www.python.org) 3.10.2에서 [nextcord](https://github.com/nextcord/nextcord) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [국토교통부_버스도착정보](https://www.data.go.kr/data/15000757/openapi.do))
 
 
