@@ -281,13 +281,13 @@ async def bus_parser(Bus_params):
     # 버스 정보 받아오기
     response = requests.get(Bus_URL, params=Bus_params)
 
-    # 버스 도착 예정 시간, 남은 정류장 추출
+    # 버스 정보 XML로 받아오기
     bus_xml = ET.fromstring(response.content)
-    item_tag = bus_xml.findall(".//item[1]")
 
-    for i in item_tag:
-        arrtime = int(i.findtext("arrtime"))
-        cnt = f"(남은 정거장 수 : {i.findtext('arrprevstationcnt')})"
+    # 도착 예정 시간
+    arrtime = int(bus_xml.findtext(".//arrtime"))
+    # 남은 정거장 수
+    cnt = f"(남은 정거장 수 : {bus_xml.findtext('.//arrprevstationcnt')})"
 
     # 도착 예정 시간 초를 분,초로 변환
     second = arrtime % 60
