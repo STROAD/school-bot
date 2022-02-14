@@ -72,7 +72,7 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 
 Token = "#수정하기#"  # 이곳에 자신의 디스코드 봇 토큰 넣기
 meal_KEY = "#수정하기#"  # 이곳에 자신의 급식식단정보 Open API 인증키 입력
-bus_KEY = "#수정하기#"  # 이곳에 자신의 국토교통부 버스도착정보 Open API 인증키 입력
+open_API_KEY = "#수정하기#"  # 이곳에 자신의 국토교통부 버스도착정보 Open API 인증키 입력
 
 GitHub = "https://github.com/STROAD/school-bot"
 
@@ -299,7 +299,7 @@ async def bus_parser(Bus_params):
 async def 집버스(ctx):
     # 버스 파라미터
     Bus_params = {
-        "serviceKey": bus_KEY,
+        "serviceKey": open_API_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
         "routeId": "#수정하기#",
@@ -324,7 +324,7 @@ async def 집버스(ctx):
 async def 학교버스(ctx):
     # 버스 파라미터
     Bus_params = {
-        "serviceKey": bus_KEY,
+        "serviceKey": open_API_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
         "routeId": "#수정하기#",
