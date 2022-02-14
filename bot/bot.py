@@ -453,5 +453,20 @@ async def 날씨(ctx):
     else:
         print("오류! 잠시후 다시 시도해주시기 바랍니다.")
 
+    embed = nextcord.Embed(title="***날씨 정보***", description="ㅇㅇ동", colour=0x2196F3)
+    embed.add_field(name="***기온***", value=f"{tmp}°C")
+    embed.add_field(name="***습도***", value=f"{reh}%")
+    embed.add_field(name="***하늘***", value=f"{sky}")
+    embed.add_field(name="***강수확률***", value=f"{pop}%")
+    # 강수형태가 있을 경우에만 임베드 추가
+    if pty_code != "0":
+        embed.add_field(name="**강수형태**", value=f"{pty}")
+        embed.add_field(name="**강수량**", value=f"{pcp}")
+    # 적설이 있을 경우에만 임베드 추가
+    if sno != "적설없음":
+        embed.add_field(name="**적설량**", value=f"{sno}")
+
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 bot.run(Token)
