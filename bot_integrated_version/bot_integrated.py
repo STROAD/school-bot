@@ -348,4 +348,9 @@ async def 학교버스(ctx):
 weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
 
 
+@bot.command(aliases=["ㄴㅆ"])
+async def 날씨(ctx):
+    pass
+
+
 bot.run(Token)
