@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import xml.etree.ElementTree as ET
 import re
@@ -330,7 +330,11 @@ weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilag
 
 @bot.command(aliases=["ㄴㅆ"])
 async def 날씨(ctx):
-    pass
+    # 날짜, 시간 구하기
+    now_date = int(datetime.now().strftime("%Y%m%d"))
+    yes_date = datetime.now() - timedelta(1)
+    now_hour = int(datetime.now().strftime("%H"))
+    now_min = int(datetime.now().strftime("%M"))
 
 
 bot.run(Token)
