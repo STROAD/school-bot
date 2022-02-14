@@ -379,6 +379,15 @@ async def 날씨(ctx):
 
     # 날씨정보 JSON으로 받아오기
     response = requests.get(weather_URL, params=weather_params).json()
+    # 호출결과 코드
+    resultCode = response["response"]["header"]["resultCode"]
+
+    # 정상적으로 호출되었을 경우
+    if resultCode == "00":
+        print("정상처리 되었습니다")
+    # 정상적으로 호출되지 못했을 경우
+    else:
+        print("오류! 잠시후 다시 시도해주시기 바랍니다.")
 
 
 bot.run(Token)
