@@ -344,4 +344,8 @@ async def 학교버스(ctx):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
+# 날씨 API URL
+weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
+
+
 bot.run(Token)
