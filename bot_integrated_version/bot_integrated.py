@@ -104,6 +104,7 @@ async def 도움말(ctx):
     embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
     embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
+    embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
@@ -348,6 +349,7 @@ async def 학교버스(ctx):
 weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
 
 
+# 날씨
 @bot.command(aliases=["ㄴㅆ"])
 async def 날씨(ctx):
     # 날짜, 시간 구하기
