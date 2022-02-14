@@ -404,7 +404,71 @@ async def 날씨(ctx):
 
     # 정상적으로 호출되었을 경우
     if resultCode == "00":
-        print("정상처리 되었습니다")
+        # 날씨정보
+        weather_data = response.get("response").get("body").get("items")
+
+        # 날씨정보 추출
+        for item in weather_data["item"]:
+            # 1시간 기온
+            if item["category"] == "TMP":
+                tmp = item["fcstValue"]
+
+            # 하늘상태
+            if item["category"] == "SKY":
+                sky_code = item["fcstValue"]
+
+                if sky_code == "1":
+                    sky = "맑음"
+                elif sky_code == "3":
+                    sky = "구름많음"
+                elif sky_code == "4":
+                    sky = "흐림"
+                else:
+                    sky = "정보없음"
+
+            # 강수형태
+            if item["category"] == "PTY":
+                pty_code = item["fcstValue"]
+
+                if pty_code == "0":
+                    pty = "강수없음"
+                elif pty_code == "1":
+                    pty = "비"
+                elif pty_code == "2":
+                    pty = "비/눈"
+                elif pty_code == "3":
+                    pty = "눈"
+                elif pty_code == "4":
+                    pty = "소나기"
+                else:
+                    pty = "정보없음"
+
+            # 강수확률
+            if item["category"] == "POP":
+                pop = item["fcstValue"]
+
+            # 1시간 강수량
+            if item["category"] == "PCP":
+                pcp = item["fcstValue"]
+
+                if pcp == "강수없음":
+                    pcp = pcp
+                else:
+                    pcp = f"{pcp} mm"
+
+            # 습도
+            if item["category"] == "REH":
+                reh = item["fcstValue"]
+
+            # 1시간 신적설
+            if item["category"] == "SNO":
+                sno = item["fcstValue"]
+
+                if sno == "적설없음":
+                    sno = sno
+                else:
+                    sno = f"{sno} cm"
+
     # 정상적으로 호출되지 못했을 경우
     else:
         print("오류! 잠시후 다시 시도해주시기 바랍니다.")
