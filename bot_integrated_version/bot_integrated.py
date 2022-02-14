@@ -385,5 +385,17 @@ async def 날씨(ctx):
         base_time = now_date
         base_time = "2300"
 
+    # 날씨 파라미터
+    weather_params = {
+        "ServiceKey": open_API_KEY,
+        "pageNo": "1",
+        "numOfRows": "12",
+        "dataType": "JSON",
+        "base_date": base_date,
+        "base_time": base_time,
+        "nx": "62",
+        "ny": "110",
+    }
+
 
 bot.run(Token)
