@@ -12,7 +12,7 @@ bot_activity = nextcord.Activity(type=nextcord.ActivityType.listening, name="!�
 
 # 인증키
 meal_KEY = ""  # 이곳에 자신의 급식식단정보 Open API 인증키 입력
-bus_KEY = ""  # 이곳에 자신의 국토교통부 버스도착정보 Open API 인증키 입력
+open_API_KEY = ""  # 이곳에 자신의 공공데이터포털 Open API 인증키 입력, 버스 및 날씨정보 API에 이용됨
 
 
 # 시간표
