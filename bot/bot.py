@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 import re
 from config import Token
 from config import meal_KEY
-from config import bus_KEY
+from config import open_API_KEY
 from config import bot_status
 from config import bot_activity
 from config import schedule
@@ -279,7 +279,7 @@ async def bus_parser(Bus_params):
 async def 집버스(ctx):
     # 버스 파라미터
     Bus_params = {
-        "serviceKey": bus_KEY,
+        "serviceKey": open_API_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
         "routeId": "#수정하기#",
@@ -304,7 +304,7 @@ async def 집버스(ctx):
 async def 학교버스(ctx):
     # 버스 파라미터
     Bus_params = {
-        "serviceKey": bus_KEY,
+        "serviceKey": open_API_KEY,
         "cityCode": "#수정하기#",
         "nodeId": "#수정하기#",
         "routeId": "#수정하기#",
