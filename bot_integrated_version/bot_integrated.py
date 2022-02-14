@@ -356,5 +356,34 @@ async def 날씨(ctx):
     now_hour = int(datetime.now().strftime("%H"))
     now_min = int(datetime.now().strftime("%M"))
 
+    # API 제공 시간에 맞춰 가장 최신의 정보를 받을 수 있는 시간을 설정
+    if now_hour < 2 or (now_hour == 2 and now_min <= 10):
+        base_date = yes_date
+        base_time = "2300"
+    elif now_hour < 5 or (now_hour == 5 and now_min <= 10):
+        base_date = now_date
+        base_time = "0200"
+    elif now_hour < 8 or (now_hour == 8 and now_min <= 10):
+        base_date = now_date
+        base_time = "0500"
+    elif now_hour < 11 or now_min <= 10:
+        base_date = now_date
+        base_time = "0800"
+    elif now_hour < 14 or (now_hour == 14 and now_min <= 10):
+        base_date = now_date
+        base_time = "1100"
+    elif now_hour < 17 or (now_hour == 17 and now_min <= 10):
+        base_date = now_date
+        base_time = "1400"
+    elif now_hour < 20 or (now_hour == 20 and now_min <= 10):
+        base_date = now_date
+        base_time = "1700"
+    elif now_hour < 23 or (now_hour == 23 and now_min <= 10):
+        base_date = now_date
+        base_time = "2000"
+    else:
+        base_time = now_date
+        base_time = "2300"
+
 
 bot.run(Token)
