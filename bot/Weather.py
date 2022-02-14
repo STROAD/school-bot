@@ -53,8 +53,8 @@ async def weather(ctx):
         "dataType": "JSON",
         "base_date": base_date,
         "base_time": base_time,
-        "nx": "62",
-        "ny": "110",
+        "nx": "#수정하기#",
+        "ny": "#수정하기#",
     }
 
     # 날씨정보 JSON으로 받아오기

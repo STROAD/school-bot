@@ -1,16 +1,7 @@
 import nextcord
 from nextcord.ext import commands
-from datetime import datetime, timedelta
-import requests
-import xml.etree.ElementTree as ET
-import re
-from config import Token
-from config import meal_KEY
-from config import open_API_KEY
-from config import bot_status
-from config import bot_activity
-from config import schedule
-from config import GitHub
+from datetime import datetime
+from config import Token, bot_status, bot_activity, schedule, GitHub
 from Meal import today_meal, tomorrow_meal
 from Bus import bus_home, bus_school
 from Weather import weather
