@@ -397,5 +397,8 @@ async def 날씨(ctx):
         "ny": "110",
     }
 
+    # 날씨정보 JSON으로 받아오기
+    response = requests.get(weather_URL, params=weather_params).json()
+
 
 bot.run(Token)
