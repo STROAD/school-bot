@@ -17,51 +17,60 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 
 [기본인자]
 
-{변수설명}{변수명}
-인증키 = KEY
-호출 문서(xml, json) = Type
-페이지 위치 = pIndex
-페이지 당 요청 숫자 = pSize
+{변수설명}{변수명}{예시}
+인증키               = KEY    = -
+호출 문서(xml, json) = Type   = xml
+페이지 위치          = pIndex = 1
+페이지 당 요청 숫자  = pSize  = 100
 
 
 [요청인자]
 
 {변수설명}{변수명}{예시}
 시도교육청코드 = ATPT_OFCDC_SC_CODE = A01
-표준학교코드 = SD_SCHUL_CODE = 0123456
-식사코드 = MMEAL_SC_CODE = 0
-급식일자 = MLSV_YMD = yyyymmdd
-급식시작일자 = MLSV_FROM_YMD = yyyymmdd
-급식종료일자 = MLSV_TO_YMD = yyyymmdd
+표준학교코드   = SD_SCHUL_CODE      = 0123456
+식사코드       = MMEAL_SC_CODE      = 0
+급식일자       = MLSV_YMD           = yyyymmdd
+급식시작일자   = MLSV_FROM_YMD      = yyyymmdd
+급식종료일자   = MLSV_TO_YMD        = yyyymmdd
 
 ##############################################################################
 
-[공공데이터포털](국토교통부_버스도착정보)
-(https://www.data.go.kr/data/15000757/openapi.do)
+[공공데이터포털](국토교통부_(TAGO)_버스도착정보)
+(https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098530)
 
 
--정류소별특정노선버스도착예정정보목록조회-
+-정류소별특정노선버스 도착예정정보 목록조회-
 
 
 [요청변수(Request Parameter)]
 
-{항목명(국문)}{항목명(영문)}{예시}
-도시코드 = cityCode = 12345
-정류소ID = nodeId = ABC12345678
-노선ID = routeId = ABC123456789
+{항목명(국문)}{항목명(영문)}{예시}{항목구분}
+서비스키          = serviceKey = -            = 필수
+페이지 번호       = pageNo     = 1            = 옵션
+한 페이지 결과 수 = numOfRows  = 10           = 옵션
+데이터 타입       = _type      = xml          = 옵션
+도시코드          = cityCode   = 12345        = 필수
+정류소ID          = nodeId     = ABC12345678  = 필수
+노선ID            = routeId    = ABC123456789 = 필수
 
 
 [출력결과(Response Element)]
 
 {항목명(국문)}{항목명(영문)}{예시}
-정류소ID = nodeid = ABC12345678
-정류소명 = nodenm = OO정류소
-노선ID = routeid = ABC123456789
-노선번호 = routeno = 1
-노선유형 = routetp = 일반버스
-도착예정버스 남은 정류장 수 = arrprevstationcnt = 12
-도착예정버스 차량유형 = vehicletp = 일반차량
-도착예정버스 도착예상시간[초] = arrtime = 123
+결과코드                      = resultCode        = 00
+결과메시지                    = resultMsg         = OK
+한 페이지 결과 수             = numOfRows         = 10
+페이지 번호                   = pageNo            = 1
+전체 결과 수                  = totalCount        = 3
+정류소ID                      = nodeid            = ABC12345678
+정류소명                      = nodenm            = OO정류소
+노선ID                        = routeid           = ABC123456789
+노선번호                      = routeno           = 1
+노선유형                      = routetp           = 일반버스
+도착예정버스 남은 정류장 수   = arrprevstationcnt = 12
+도착예정버스 차량유형         = vehicletp         = 일반차량
+도착예정버스 도착예상시간[초] = arrtime           = 123
 
 ##############################################################################
 
