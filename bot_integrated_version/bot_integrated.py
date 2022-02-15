@@ -521,7 +521,7 @@ async def 날씨(ctx):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x81C784)
+    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x2196F3)
     embed.add_field(name="***기온***", value=f"{tmp}°C")
     embed.add_field(name="***습도***", value=f"{reh}%")
     embed.add_field(name="***하늘***", value=f"{sky}")
