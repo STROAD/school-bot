@@ -1,4 +1,4 @@
-import nextcord
+from nextcord import Status, Activity, ActivityType
 
 
 # 토큰
@@ -6,8 +6,8 @@ Token = ""  # 이곳에 자신의 디스코드 봇 토큰 넣기
 
 
 # 디스코드 봇 상태 설정
-bot_status = nextcord.Status.online
-bot_activity = nextcord.Activity(type=nextcord.ActivityType.listening, name="!도움말")
+bot_status = Status.online
+bot_activity = Activity(type=ActivityType.listening, name="!도움말")
 
 
 # 인증키

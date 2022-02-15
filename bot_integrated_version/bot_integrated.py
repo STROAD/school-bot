@@ -1,9 +1,9 @@
-import nextcord
+from nextcord import Status, Activity, ActivityType, Embed
 from nextcord.ext import commands
 from datetime import datetime
 import requests
-import xml.etree.ElementTree as ET
-import re
+from xml.etree.ElementTree import fromstring
+from re import sub
 
 
 """API 정보
@@ -121,7 +121,7 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 
 Token = "#수정하기#"  # 이곳에 자신의 디스코드 봇 토큰 넣기
 meal_KEY = "#수정하기#"  # 이곳에 자신의 급식식단정보 Open API 인증키 입력
-open_API_KEY = "#수정하기#"  # 이곳에 자신의 국토교통부 버스도착정보 Open API 인증키 입력
+open_API_KEY = "#수정하기#"  # 이곳에 자신의 공공데이터포털 Open API 인증키 입력, 버스 및 날씨정보 API에 이용됨
 
 GitHub = "https://github.com/STROAD/school-bot"
 
@@ -136,8 +136,8 @@ bot = commands.Bot(command_prefix="!")
 @bot.event
 async def on_ready():
     await bot.change_presence(
-        status=nextcord.Status.online,
-        activity=nextcord.Activity(type=nextcord.ActivityType.listening, name="!도움말"),
+        status=Status.online,
+        activity=Activity(type=ActivityType.listening, name="!도움말"),
     )
     print(f"{bot.user.name}({bot.user.id}) 연결 완료")
 
@@ -145,13 +145,13 @@ async def on_ready():
 # 도움말
 @bot.command()
 async def 도움말(ctx):
-    embed = nextcord.Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
+    embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
     embed.add_field(name="3. **현재 시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
     embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
-    embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
+    embed.add_field(name="6. **급식정보 확인**", value="`!오늘급식\n!내일급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
     embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
 
@@ -161,7 +161,7 @@ async def 도움말(ctx):
 # 정보
 @bot.command(aliases=["정보"])
 async def info(ctx):
-    embed = nextcord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
+    embed = Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
     embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
@@ -235,7 +235,7 @@ async def meal_parser(meal_params):
 
     # 급식정보 XML로 받아오기
     response = requests.get(meal_url, meal_params)
-    meal_xml = ET.fromstring(response.content)
+    meal_xml = fromstring(response.content)
 
     # 호출결과 코드 찾기
     result_code = meal_xml.findtext(".//CODE")
@@ -245,8 +245,8 @@ async def meal_parser(meal_params):
     if result_code == "INFO-000":
         # 급식메뉴만 추출
         meal = str(meal_xml.findtext(".//DDISH_NM"))
-        meal = re.sub("(<([^>]+)>)", "\n", meal)
-        meal = re.sub("[0-9.]", "", meal)
+        meal = sub("(<([^>]+)>)", "\n", meal)
+        meal = sub("[0-9.]", "", meal)
 
         # 식사명 찾기
         msm = meal_xml.findtext(".//MMEAL_SC_NM")
@@ -270,7 +270,7 @@ async def 급식(ctx):
     meal_params = {
         "key": meal_KEY,
         "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "N10",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": "#수정하기#",
         "MLSV_YMD": today_time,
@@ -279,7 +279,7 @@ async def 급식(ctx):
     # meal_parser함수 실행
     await meal_parser(meal_params)
 
-    embed = nextcord.Embed(
+    embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
@@ -300,7 +300,7 @@ async def 내일급식(ctx):
     meal_params = {
         "key": meal_KEY,
         "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "N10",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": "#수정하기#",
         "MLSV_YMD": tomorrow_time,
@@ -309,7 +309,7 @@ async def 내일급식(ctx):
     # meal_parser함수 실행
     await meal_parser(meal_params)
 
-    embed = nextcord.Embed(
+    embed = Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
         description="\u200B",
         colour=0xB0BEC5,
@@ -329,7 +329,7 @@ async def bus_parser(Bus_params):
 
     # 버스 정보 XML로 받아오기
     response = requests.get(Bus_URL, params=Bus_params)
-    bus_xml = ET.fromstring(response.content)
+    bus_xml = fromstring(response.content)
 
     # 도착 예정 시간
     arrtime = int(bus_xml.findtext(".//arrtime"))
@@ -356,9 +356,7 @@ async def 집버스(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = nextcord.Embed(
-        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
-    )
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -381,9 +379,7 @@ async def 학교버스(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = nextcord.Embed(
-        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
-    )
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -521,11 +517,11 @@ async def 날씨(ctx):
 
     # 정상적으로 호출되지 못했을 경우
     else:
-        embed = nextcord.Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
+        embed = Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = nextcord.Embed(title="***날씨 정보***", description="ㅇㅇ동", colour=0x2196F3)
+    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x2196F3)
     embed.add_field(name="***기온***", value=f"{tmp}°C")
     embed.add_field(name="***습도***", value=f"{reh}%")
     embed.add_field(name="***하늘***", value=f"{sky}")

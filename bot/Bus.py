@@ -1,6 +1,6 @@
-import nextcord
-import requests
-import xml.etree.ElementTree as ET
+from nextcord import Embed
+from requests import get
+from xml.etree.ElementTree import fromstring
 from config import open_API_KEY
 
 
@@ -13,8 +13,8 @@ async def bus_parser(Bus_params):
     global minute, second, cnt, nodenm
 
     # 버스 정보 XML로 받아오기
-    response = requests.get(Bus_URL, params=Bus_params)
-    bus_xml = ET.fromstring(response.content)
+    response = get(Bus_URL, params=Bus_params)
+    bus_xml = fromstring(response.content)
 
     # 도착 예정 시간
     arrtime = int(bus_xml.findtext(".//arrtime"))
@@ -40,9 +40,7 @@ async def bus_home(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = nextcord.Embed(
-        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
-    )
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -64,9 +62,7 @@ async def bus_school(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = nextcord.Embed(
-        title="***버스 도착 정보***", description="\u200B", colour=0x2196F3
-    )
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(

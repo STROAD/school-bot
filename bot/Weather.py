@@ -1,4 +1,4 @@
-import nextcord
+from nextcord import Embed
 from datetime import datetime
 import requests
 from config import open_API_KEY
@@ -131,11 +131,11 @@ async def weather(ctx):
 
     # 정상적으로 호출되지 못했을 경우
     else:
-        embed = nextcord.Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
+        embed = Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = nextcord.Embed(title="***날씨 정보***", description="ㅇㅇ동", colour=0x2196F3)
+    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x2196F3)
     embed.add_field(name="***기온***", value=f"{tmp}°C")
     embed.add_field(name="***습도***", value=f"{reh}%")
     embed.add_field(name="***하늘***", value=f"{sky}")

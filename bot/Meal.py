@@ -1,8 +1,8 @@
-import nextcord
+from nextcord import Embed
 from datetime import datetime
-import requests
-import xml.etree.ElementTree as ET
-import re
+from requests import get
+from xml.etree.ElementTree import fromstring
+from re import sub
 from config import meal_KEY
 
 
@@ -15,8 +15,8 @@ async def meal_parser(meal_params):
     global meal, msm
 
     # 급식정보 XML로 받아오기
-    response = requests.get(meal_url, meal_params)
-    meal_xml = ET.fromstring(response.content)
+    response = get(meal_url, meal_params)
+    meal_xml = fromstring(response.content)
 
     # 호출결과 코드 찾기
     result_code = meal_xml.findtext(".//CODE")
@@ -26,8 +26,8 @@ async def meal_parser(meal_params):
     if result_code == "INFO-000":
         # 급식메뉴만 추출
         meal = str(meal_xml.findtext(".//DDISH_NM"))
-        meal = re.sub("(<([^>]+)>)", "\n", meal)
-        meal = re.sub("[0-9.]", "", meal)
+        meal = sub("(<([^>]+)>)", "\n", meal)
+        meal = sub("[0-9.]", "", meal)
 
         # 식사명 찾기
         msm = meal_xml.findtext(".//MMEAL_SC_NM")
@@ -50,7 +50,7 @@ async def today_meal(ctx):
     meal_params = {
         "key": meal_KEY,
         "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "N10",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": "#수정하기#",
         "MLSV_YMD": today_time,
@@ -59,7 +59,7 @@ async def today_meal(ctx):
     # meal_parser함수 실행
     await meal_parser(meal_params)
 
-    embed = nextcord.Embed(
+    embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
@@ -79,7 +79,7 @@ async def tomorrow_meal(ctx):
     meal_params = {
         "key": meal_KEY,
         "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "N10",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": "#수정하기#",
         "MLSV_YMD": tomorrow_time,
@@ -88,7 +88,7 @@ async def tomorrow_meal(ctx):
     # meal_parser함수 실행
     await meal_parser(meal_params)
 
-    embed = nextcord.Embed(
+    embed = Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
         description="\u200B",
         colour=0xB0BEC5,
