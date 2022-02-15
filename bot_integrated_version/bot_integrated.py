@@ -356,7 +356,7 @@ async def 집버스(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -379,7 +379,7 @@ async def 학교버스(ctx):
 
     await bus_parser(Bus_params)
 
-    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x2196F3)
+    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -521,7 +521,7 @@ async def 날씨(ctx):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x2196F3)
+    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x81C784)
     embed.add_field(name="***기온***", value=f"{tmp}°C")
     embed.add_field(name="***습도***", value=f"{reh}%")
     embed.add_field(name="***하늘***", value=f"{sky}")
