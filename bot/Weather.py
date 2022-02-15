@@ -1,5 +1,5 @@
 import nextcord
-from datetime import datetime, timedelta
+from datetime import datetime
 import requests
 from config import open_API_KEY
 
@@ -12,7 +12,7 @@ weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilag
 async def weather(ctx):
     # 날짜, 시간 구하기
     now_date = int(datetime.now().strftime("%Y%m%d"))
-    yes_date = datetime.now() - timedelta(1)
+    yes_date = int(datetime.now().strftime("%Y%m%d")) - 1
     now_hour = int(datetime.now().strftime("%H"))
     now_min = int(datetime.now().strftime("%M"))
 
@@ -131,7 +131,9 @@ async def weather(ctx):
 
     # 정상적으로 호출되지 못했을 경우
     else:
-        print("오류! 잠시후 다시 시도해주시기 바랍니다.")
+        embed = nextcord.Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
     embed = nextcord.Embed(title="***날씨 정보***", description="ㅇㅇ동", colour=0x2196F3)
     embed.add_field(name="***기온***", value=f"{tmp}°C")
