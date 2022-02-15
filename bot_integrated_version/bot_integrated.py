@@ -18,21 +18,21 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 [기본인자]
 
 {변수설명}{변수명}{예시}
-인증키               = KEY    = -
-호출 문서(xml, json) = Type   = xml
-페이지 위치          = pIndex = 1
-페이지 당 요청 숫자  = pSize  = 100
+인증키                = KEY     = -
+호출 문서(xml, json)  = Type    = xml
+페이지 위치           = pIndex  = 1
+페이지 당 요청 숫자   = pSize   = 100
 
 
 [요청인자]
 
 {변수설명}{변수명}{예시}
-시도교육청코드 = ATPT_OFCDC_SC_CODE = A01
-표준학교코드   = SD_SCHUL_CODE      = 0123456
-식사코드       = MMEAL_SC_CODE      = 0
-급식일자       = MLSV_YMD           = yyyymmdd
-급식시작일자   = MLSV_FROM_YMD      = yyyymmdd
-급식종료일자   = MLSV_TO_YMD        = yyyymmdd
+시도교육청코드  = ATPT_OFCDC_SC_CODE  = A01
+표준학교코드    = SD_SCHUL_CODE       = 0123456
+식사코드        = MMEAL_SC_CODE       = 0
+급식일자        = MLSV_YMD            = yyyymmdd
+급식시작일자    = MLSV_FROM_YMD       = yyyymmdd
+급식종료일자    = MLSV_TO_YMD         = yyyymmdd
 
 ##############################################################################
 
@@ -46,31 +46,71 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 [요청변수(Request Parameter)]
 
 {항목명(국문)}{항목명(영문)}{예시}{항목구분}
-서비스키          = serviceKey = -            = 필수
-페이지 번호       = pageNo     = 1            = 옵션
-한 페이지 결과 수 = numOfRows  = 10           = 옵션
-데이터 타입       = _type      = xml          = 옵션
-도시코드          = cityCode   = 12345        = 필수
-정류소ID          = nodeId     = ABC12345678  = 필수
-노선ID            = routeId    = ABC123456789 = 필수
+서비스키           = serviceKey  = -             = 필수
+페이지 번호        = pageNo      = 1             = 옵션
+한 페이지 결과 수  = numOfRows   = 10            = 옵션
+데이터 타입        = _type       = xml           = 옵션
+도시코드           = cityCode    = 12345         = 필수
+정류소ID           = nodeId      = ABC12345678   = 필수
+노선ID             = routeId     = ABC123456789  = 필수
 
 
 [출력결과(Response Element)]
 
 {항목명(국문)}{항목명(영문)}{예시}
-결과코드                      = resultCode        = 00
-결과메시지                    = resultMsg         = OK
-한 페이지 결과 수             = numOfRows         = 10
-페이지 번호                   = pageNo            = 1
-전체 결과 수                  = totalCount        = 3
-정류소ID                      = nodeid            = ABC12345678
-정류소명                      = nodenm            = OO정류소
-노선ID                        = routeid           = ABC123456789
-노선번호                      = routeno           = 1
-노선유형                      = routetp           = 일반버스
-도착예정버스 남은 정류장 수   = arrprevstationcnt = 12
-도착예정버스 차량유형         = vehicletp         = 일반차량
-도착예정버스 도착예상시간[초] = arrtime           = 123
+결과코드                       = resultCode         = 00
+결과메시지                     = resultMsg          = OK
+한 페이지 결과 수              = numOfRows          = 10
+페이지 번호                    = pageNo             = 1
+전체 결과 수                   = totalCount         = 3
+정류소ID                       = nodeid             = ABC12345678
+정류소명                       = nodenm             = OO정류소
+노선ID                         = routeid            = ABC123456789
+노선번호                       = routeno            = 1
+노선유형                       = routetp            = 일반버스
+도착예정버스 남은 정류장 수    = arrprevstationcnt  = 12
+도착예정버스 차량유형          = vehicletp          = 일반차량
+도착예정버스 도착예상시간[초]  = arrtime            = 123
+
+##############################################################################
+
+[공공데이터포털](기상청_단기예보 ((구)_동네예보) 조회서비스)
+(https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)
+
+
+-단기예보조회-
+
+
+[요청변수(Request Parameter)]
+
+{항목명(국문)}{항목명(영문)}{예시}{항목구분}
+서비스키           = ServiceKey  = -         = 필수
+페이지 번호        = pageNo      = 1         = 필수
+한 페이지 결과 수  = numOfRows   = 10        = 필수
+응답자료형식       = dataType    = JSON      = 옵션
+발표일자           = base_date   = 20220215  = 필수
+발표시각           = base_time   = 1100      = 필수
+예보지점 X 좌표    = nx          = 55        = 필수
+예보지점 Y 좌표    = ny          = 127       = 필수
+
+
+[출력결과(Response Element)]
+
+{항목명(국문)}{항목명(영문)}{예시}
+결과코드           = resultCode  = 00
+결과메시지         = resultMsg   = OK
+한 페이지 결과 수  = numOfRows   = 10
+페이지 번호        = pageNo      = 1
+전체 결과 수       = totalCount  = 3
+데이터 타입        = dataType    = JSON
+발표일자           = baseDate    = 20220215
+발표시각           = baseTime    = 1100
+예보일자           = fcstDate    = 20220215
+예보시각           = fcstTime    = 1200
+자료구분문자       = category    = TMP
+예보 값            = fcstValue   = 10
+예보지점 X 좌표    = nx          = 55
+예보지점 Y 좌표    = ny          = 127
 
 ##############################################################################
 
