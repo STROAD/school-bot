@@ -5,8 +5,7 @@ from config import open_API_KEY
 
 
 # 버스 API URL
-Bus_URL = "http://openapi.tago.go.kr/openapi/service/\
-ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
+Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
 
 # 버스정보 가져오기
