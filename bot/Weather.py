@@ -133,6 +133,8 @@ async def weather(ctx):
     # 강수형태가 있을 경우에만 임베드 추가
     if pty_code != "0":
         embed.add_field(name="**강수형태**", value=f"{pty}")
+    # 강수량이 있을 경우에만 임베드 추가
+    if pcp != "강수없음":
         embed.add_field(name="**강수량**", value=f"{pcp}")
     # 적설이 있을 경우에만 임베드 추가
     if sno != "적설없음":
