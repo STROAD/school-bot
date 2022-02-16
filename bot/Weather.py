@@ -42,7 +42,7 @@ async def weather(ctx):
         base_date = now_date
         base_time = "2000"
     else:
-        base_time = now_date
+        base_date = now_date
         base_time = "2300"
 
     # 날씨 파라미터
