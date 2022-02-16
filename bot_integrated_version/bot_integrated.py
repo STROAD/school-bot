@@ -497,11 +497,6 @@ async def 날씨(ctx):
             if item["category"] == "PCP":
                 pcp = item["fcstValue"]
 
-                if pcp == "강수없음":
-                    pcp = pcp
-                else:
-                    pcp = f"{pcp}"
-
             # 습도
             if item["category"] == "REH":
                 reh = item["fcstValue"]
@@ -509,11 +504,6 @@ async def 날씨(ctx):
             # 1시간 신적설
             if item["category"] == "SNO":
                 sno = item["fcstValue"]
-
-                if sno == "적설없음":
-                    sno = sno
-                else:
-                    sno = f"{sno}"
 
     # 정상적으로 호출되지 못했을 경우
     else:
