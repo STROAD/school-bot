@@ -500,7 +500,7 @@ async def 날씨(ctx):
                 if pcp == "강수없음":
                     pcp = pcp
                 else:
-                    pcp = f"{pcp} mm"
+                    pcp = f"{pcp}"
 
             # 습도
             if item["category"] == "REH":
@@ -513,7 +513,7 @@ async def 날씨(ctx):
                 if sno == "적설없음":
                     sno = sno
                 else:
-                    sno = f"{sno} cm"
+                    sno = f"{sno}"
 
     # 정상적으로 호출되지 못했을 경우
     else:
