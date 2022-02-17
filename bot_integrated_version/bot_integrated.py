@@ -412,7 +412,7 @@ async def 날씨(ctx):
     elif now_hour < 8 or (now_hour == 8 and now_min <= 10):
         base_date = now_date
         base_time = "0500"
-    elif now_hour < 11 or now_min <= 10:
+    elif now_hour < 11 or (now_hour == 11 and now_min <= 10):
         base_date = now_date
         base_time = "0800"
     elif now_hour < 14 or (now_hour == 14 and now_min <= 10):
