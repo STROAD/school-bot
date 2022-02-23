@@ -288,6 +288,13 @@ async def 급식(ctx, *, msg=None):
         elif len(y) == 4:
             pass
 
+    # 잘못된 날짜를 입력하면 오류 메시지를 출력
+    else:
+        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
     # 급식 파라미터
     meal_params = {
         "key": meal_KEY,
