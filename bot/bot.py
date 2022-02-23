@@ -199,10 +199,10 @@ async def 시간표(ctx):
     await ctx.send(schedule)
 
 
-# 오늘급식
+# 오늘급식 or 사용자가 입력한 날짜의 급식
 @bot.command(aliases=["오늘급식"])
-async def 급식(ctx):
-    await today_meal(ctx)
+async def 급식(ctx, *, msg=None):
+    await today_meal(ctx, msg)
 
 
 # 내일급식

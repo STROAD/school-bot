@@ -38,8 +38,8 @@ async def meal_parser(meal_params):
         msm = " "
 
 
-# 오늘급식
-async def today_meal(ctx):
+# 오늘급식 or 사용자가 입력한 날짜의 급식
+async def today_meal(ctx, msg):
     # 현재 날짜 구하기
     today_time = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
