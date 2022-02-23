@@ -268,6 +268,19 @@ async def 급식(ctx, *, msg=None):
         m = datetime.now().strftime("%m")
         d = datetime.now().strftime("%d")
 
+    # 사용자가 입력한 날짜로 설정
+    # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
+    elif (
+        msg != None
+        and (0 < int(msg[-4:-2]) < 13)
+        and (0 < int(msg[-2:]) < 32)
+        and (len(msg) == 6 or len(msg) == 8)
+    ):
+        today_time = msg
+        y = msg[:-4]
+        m = msg[-4:-2]
+        d = msg[-2:]
+
     # 급식 파라미터
     meal_params = {
         "key": meal_KEY,
