@@ -281,8 +281,12 @@ async def 급식(ctx, *, msg=None):
         m = msg[-4:-2]
         d = msg[-2:]
 
+        # 년도를 2글자만 썼을경우 앞에 20을 붙여줌
         if len(y) == 2:
             y = "20" + y
+        # 4글자 모두 입력했으면 pass
+        elif len(y) == 4:
+            pass
 
     # 급식 파라미터
     meal_params = {
