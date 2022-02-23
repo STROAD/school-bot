@@ -260,15 +260,14 @@ async def meal_parser(meal_params):
 # 오늘급식 or 사용자가 입력한 날짜의 급식
 @bot.command(aliases=["오늘급식"])
 async def 급식(ctx, *, msg=None):
-    # 현재 날짜 구하기
     # `!급식` 뒤에 날짜를 입력하지 않았을 경우
     if msg == None:
+        # 현재 날짜 구하기
         today_time = datetime.now().strftime("%Y%m%d")
         y = datetime.now().strftime("%Y")
         m = datetime.now().strftime("%m")
         d = datetime.now().strftime("%d")
 
-    # 사용자가 입력한 날짜로 설정
     # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
     elif (
         msg != None
@@ -276,6 +275,7 @@ async def 급식(ctx, *, msg=None):
         and (0 < int(msg[-2:]) < 32)
         and (len(msg) == 6 or len(msg) == 8)
     ):
+        # 사용자가 입력한 날짜로 설정
         today_time = msg
         y = msg[:-4]
         m = msg[-4:-2]
