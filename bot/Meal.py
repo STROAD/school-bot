@@ -61,6 +61,9 @@ async def today_meal(ctx, msg):
         m = msg[-4:-2]
         d = msg[-2:]
 
+        if len(y) == 2:
+            y = "20" + y
+
     # 급식 파라미터
     meal_params = {
         "key": meal_KEY,
