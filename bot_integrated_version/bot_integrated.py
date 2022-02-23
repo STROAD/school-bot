@@ -261,10 +261,12 @@ async def meal_parser(meal_params):
 @bot.command(aliases=["오늘급식"])
 async def 급식(ctx, *, msg=None):
     # 현재 날짜 구하기
-    today_time = datetime.now().strftime("%Y%m%d")
-    y = datetime.now().strftime("%Y")
-    m = datetime.now().strftime("%m")
-    d = datetime.now().strftime("%d")
+    # `!급식` 뒤에 날짜를 입력하지 않았을 경우
+    if msg == None:
+        today_time = datetime.now().strftime("%Y%m%d")
+        y = datetime.now().strftime("%Y")
+        m = datetime.now().strftime("%m")
+        d = datetime.now().strftime("%d")
 
     # 급식 파라미터
     meal_params = {
