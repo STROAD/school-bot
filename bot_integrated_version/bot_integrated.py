@@ -252,6 +252,22 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 버스 도착 정보 확인 명령어 도움말
+    elif msg == "버스" or msg == "집버스" or msg == "학교버스":
+        embed = Embed(
+            title="***도움말(버스 도착 정보 확인 명령어)***",
+            description="사용법: `!집버스` or `!학교버스`",
+            colour=0xFFFF8D,
+        )
+        embed.add_field(
+            name="상세정보",
+            value="`!집버스` 명령어로 집으로 가는 버스의 도착 정보를 확인할 수 있습니다.\n\
+`!학교버스` 명령어로 학교로 가는 버스의 도착 정보를 확인할 수 있습니다.",
+            inline=False,
+        )
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
