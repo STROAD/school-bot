@@ -144,7 +144,7 @@ async def on_ready():
 
 # 도움말
 @bot.command()
-async def 도움말(ctx):
+async def 도움말(ctx, *, msg=None):
     embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
