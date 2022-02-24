@@ -283,6 +283,13 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 그 외의 문자를 입력하면 오류메시지 전송
+    else:
+        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
