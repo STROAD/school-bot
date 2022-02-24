@@ -53,6 +53,10 @@ async def today_meal(ctx, msg):
     if msg == None:
         pass
 
+    # `!급식` 뒤에 석식을 입력했을 경우
+    elif msg == "석식":
+        m_s_code = "3"
+
     # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
     elif (
         msg != None
