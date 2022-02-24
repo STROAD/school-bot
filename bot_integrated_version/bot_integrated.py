@@ -464,12 +464,29 @@ async def 급식(ctx, *, msg=None):
 
 # 내일급식
 @bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
-async def 내일급식(ctx):
+async def 내일급식(ctx, *, msg=None):
+    # 기본적으로 중식정보를 받아오도록 함
+    m_s_code = "2"
+
     # 내일 날짜 구하기
     tomorrow_time = int(datetime.now().strftime("%Y%m%d")) + 1
     tomorrow_y = int(datetime.now().strftime("%Y"))
     tomorrow_m = int(datetime.now().strftime("%m"))
     tomorrow_d = int(datetime.now().strftime("%d")) + 1
+
+    # `!내일급식` 뒤에 아무것도 입력하지 않았을 경우
+    if msg == None:
+        pass
+
+    # `!내일급식` 뒤에 석식을 입력했을 경우
+    elif msg == "석식":
+        m_s_code = "3"
+
+    else:
+        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
     # 급식 파라미터
     meal_params = {
@@ -477,7 +494,7 @@ async def 내일급식(ctx):
         "Type": "xml",
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
-        "MMEAL_SC_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": m_s_code,
         "MLSV_YMD": tomorrow_time,
     }
 
@@ -489,7 +506,8 @@ async def 내일급식(ctx):
         description="\u200B",
         colour=0xB0BEC5,
     )
-    embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
+    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+    embed.set_footer(text=f"{msm}")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 

@@ -343,8 +343,8 @@ async def 급식(ctx, *, msg=None):
 
 # 내일급식
 @bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
-async def 내일급식(ctx):
-    await tomorrow_meal(ctx)
+async def 내일급식(ctx, *, msg=None):
+    await tomorrow_meal(ctx, msg)
 
 
 # 집버스
