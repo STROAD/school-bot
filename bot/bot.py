@@ -176,6 +176,21 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 현재시간 명령어 도움말
+    elif msg == "현재시간" or msg == "시간" or msg == "time":
+        embed = Embed(
+            title="***도움말(현재시간 명령어)***",
+            description="사용법: `!현재시간` or `!time`",
+            colour=0xFFFF8D,
+        )
+        embed.add_field(
+            name="상세정보",
+            value="현재시간을 확인할 수 있습니다.",
+            inline=False,
+        )
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
