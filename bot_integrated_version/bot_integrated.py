@@ -295,7 +295,7 @@ async def 도움말(ctx, *, msg=None):
 @bot.command(aliases=["정보"])
 async def info(ctx):
     embed = Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
-    embed.add_field(name="디스코드 봇", value="급식, 버스정보 확인가능", inline=False)
+    embed.add_field(name="School_Bot", value="급식, 버스, 날씨정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
     embed.add_field(name="*버전* : 3.0.1", value=f"[GitHub]({GitHub})", inline=False)
