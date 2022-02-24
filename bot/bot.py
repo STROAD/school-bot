@@ -221,6 +221,24 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 급식 명령어 도움말
+    elif msg == "급식" or msg == "오늘급식" or msg == "내일급식":
+        today = datetime.now().strftime("%Y%m%d")
+
+        embed = Embed(
+            title="***도움말(급식 명령어)***", description="사용법: `!급식 [날짜]`", colour=0xFFFF8D
+        )
+        embed.add_field(
+            name="상세정보",
+            value="오늘의 급식, 내일의 급식 혹은 사용자가 입력한 날짜의 급식을 확인할 수 있습니다.\n\
+`[날짜]` 부분을 입력하지 않고 `!급식`만 입력하면 오늘의 급식을 확인할 수 있습니다.\n\
+`!내일급식` 명령어를 통해 내일의 급식을 확인할 수 있습니다.",
+            inline=False,
+        )
+        embed.add_field(name="**예시**", value=f"`!급식 {today}`", inline=False)
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
