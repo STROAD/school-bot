@@ -268,6 +268,21 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 날씨정보 확인 명령어 도움말
+    elif msg == "날씨":
+        embed = Embed(
+            title="***도움말(날씨정보 확인 명령어)***",
+            description="사용법: `!날씨`",
+            colour=0xFFFF8D,
+        )
+        embed.add_field(
+            name="상세정보",
+            value="특정지역의 날씨(단기예보)정보를 확인을 확인할 수 있습니다.",
+            inline=False,
+        )
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
