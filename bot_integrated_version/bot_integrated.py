@@ -393,6 +393,9 @@ async def meal_parser(meal_params):
 # 오늘급식 or 사용자가 입력한 날짜의 급식
 @bot.command(aliases=["오늘급식"])
 async def 급식(ctx, *, msg=None):
+    # 기본적으로 중식정보를 받아오도록 함
+    m_s_code = "2"
+
     # 현재 날짜 구하기
     today_time = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
@@ -436,7 +439,7 @@ async def 급식(ctx, *, msg=None):
         "Type": "xml",
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
-        "MMEAL_SC_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": m_s_code,
         "MLSV_YMD": today_time,
     }
 
