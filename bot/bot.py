@@ -161,6 +161,21 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 안녕 명령어 도움말
+    elif msg == "안녕" or msg == "Hi" or msg == "hi":
+        embed = Embed(
+            title="***도움말(안녕 명령어)***",
+            description="사용법: `!안녕` or `!hi`",
+            colour=0xFFFF8D,
+        )
+        embed.add_field(
+            name="상세정보",
+            value="School_Bot과 인사할 수 있습니다.",
+            inline=False,
+        )
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
