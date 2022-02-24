@@ -30,7 +30,7 @@ async def meal_parser(meal_params):
         meal = sub("[0-9.]", "", meal)
 
         # 식사명 찾기
-        msm = meal_xml.findtext(".//MMEAL_SC_NM")
+        msm = f'({meal_xml.findtext(".//MMEAL_SC_NM")})'
 
     # 급식이 없을경우
     elif result_code == "INFO-200":
@@ -100,7 +100,8 @@ async def today_meal(ctx, msg):
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
     )
-    embed.add_field(name=f"**{meal}**", value=f"**{msm}**", inline=False)
+    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+    embed.set_footer(text=f"{msm}")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 

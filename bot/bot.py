@@ -139,7 +139,9 @@ async def 도움말(ctx, *, msg=None):
         embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
         embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
         embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
-        embed.add_field(name="6. **급식정보 확인**", value="`!오늘급식\n!내일급식`", inline=False)
+        embed.add_field(
+            name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False
+        )
         embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
         embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
         embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
