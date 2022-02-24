@@ -219,6 +219,21 @@ async def 도움말(ctx, *, msg=None):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
+    # 시간표 명령어 도움말
+    elif msg == "시간표":
+        embed = Embed(
+            title="***도움말(시간표 명령어)***",
+            description="사용법: `!시간표`",
+            colour=0xFFFF8D,
+        )
+        embed.add_field(
+            name="상세정보",
+            value="시간표를 확인할 수 있습니다.",
+            inline=False,
+        )
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
 
 # 정보
 @bot.command(aliases=["정보"])
