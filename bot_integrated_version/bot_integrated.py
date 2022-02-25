@@ -1,5 +1,5 @@
 from nextcord import Status, Activity, ActivityType, Embed
-from nextcord.ext import commands
+from nextcord.ext import commands, tasks
 from datetime import datetime
 import requests
 from xml.etree.ElementTree import fromstring
@@ -723,4 +723,44 @@ async def 날씨(ctx):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
+# 특정 시간에 급식(중식)정보 보내기
+@tasks.loop(seconds=1)
+async def meal_noti():
+    # 월~금 요일의 12:30:30 PM 일때
+    if (
+        datetime.now().strftime("%p") == "PM"
+        and 0 <= datetime.now().weekday() < 5
+        and datetime.now().hour == 12
+        and datetime.now().minute == 30
+        and datetime.now().second == 30
+    ):
+        # 현재 날짜 구하기
+        today_time = datetime.now().strftime("%Y%m%d")
+        y = datetime.now().strftime("%Y")
+        m = datetime.now().strftime("%m")
+        d = datetime.now().strftime("%d")
+
+        # 급식 파라미터
+        meal_params = {
+            "key": meal_KEY,
+            "Type": "xml",
+            "ATPT_OFCDC_SC_CODE": "#수정하기#",
+            "SD_SCHUL_CODE": "#수정하기#",
+            "MMEAL_SC_CODE": "2",
+            "MLSV_YMD": today_time,
+        }
+
+        # meal_parser함수 실행
+        await meal_parser(meal_params)
+
+        embed = Embed(
+            title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
+        )
+        embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+        embed.set_footer(text=f"{msm}")
+
+        await bot.get_channel("#수정하기#").send(embed=embed)
+
+
+meal_noti.start()
 bot.run(Token)

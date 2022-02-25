@@ -1,8 +1,8 @@
 from nextcord import Embed
-from nextcord.ext import commands
+from nextcord.ext import commands, tasks
 from datetime import datetime
 from config import Token, bot_status, bot_activity, schedule, GitHub
-from Meal import today_meal, tomorrow_meal
+from Meal import today_meal, tomorrow_meal, meal_noti
 from Bus import bus_home, bus_school
 from Weather import weather
 
@@ -365,4 +365,20 @@ async def 날씨(ctx):
     await weather(ctx)
 
 
+# 특정 시간에 급식(중식)정보 보내기
+@tasks.loop(seconds=1)
+async def meal_Notification():
+    # 월~금 요일의 12:30:30 PM 일때
+    if (
+        datetime.now().strftime("%p") == "PM"
+        and 0 <= datetime.now().weekday() < 5
+        and datetime.now().hour == 12
+        and datetime.now().minute == 30
+        and datetime.now().second == 30
+    ):
+        # meal_noti함수 실행
+        await meal_noti(bot)
+
+
+meal_Notification.start()
 bot.run(Token)

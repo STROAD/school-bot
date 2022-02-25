@@ -153,3 +153,33 @@ async def tomorrow_meal(ctx, msg):
     embed.set_footer(text=f"{msm}")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
+
+# 특정 채널로 급식(중식)정보 보내기
+async def meal_noti(bot):
+    # 현재 날짜 구하기
+    today_time = datetime.now().strftime("%Y%m%d")
+    y = datetime.now().strftime("%Y")
+    m = datetime.now().strftime("%m")
+    d = datetime.now().strftime("%d")
+
+    # 급식 파라미터
+    meal_params = {
+        "key": meal_KEY,
+        "Type": "xml",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
+        "SD_SCHUL_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": "2",
+        "MLSV_YMD": today_time,
+    }
+
+    # meal_parser함수 실행
+    await meal_parser(meal_params)
+
+    embed = Embed(
+        title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
+    )
+    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+    embed.set_footer(text=f"{msm}")
+
+    await bot.get_channel("#수정하기#").send(embed=embed)
