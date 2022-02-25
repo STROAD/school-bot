@@ -4,11 +4,11 @@ school bot은 [Python](https://www.python.org) 3.10.2에서 [nextcord](https://g
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [국토교통부_(TAGO)_버스도착정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098530), [기상청_단기예보 ((구)_동네예보) 조회서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084))
 
 
- 오늘의 급식, 내일의 급식, 버스 도착 예정 시간, 날씨정보 확인 등이 가능합니다.
+급식, 버스 도착 예정 시간, 날씨정보 확인 등이 가능합니다.
 
 
 ## 주요기능
-* 오늘 날짜의 급식(중식) 보기
+* 급식(중식, 석식) 보기
 * 버스 도착시간 보기
 * 날씨정보 확인
 
