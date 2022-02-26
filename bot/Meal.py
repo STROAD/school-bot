@@ -34,7 +34,7 @@ async def meal_parser(meal_params):
 
     # 급식이 없을경우
     elif result_code == "INFO-200":
-        meal = "급식이 없습니다."
+        meal = "급식정보가 존재하지 않습니다."
         msm = " "
 
 
