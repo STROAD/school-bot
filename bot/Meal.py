@@ -44,7 +44,7 @@ async def today_meal(ctx, msg):
     m_s_code = "2"
 
     # 현재 날짜 구하기
-    today_time = datetime.now().strftime("%Y%m%d")
+    mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
@@ -65,7 +65,7 @@ async def today_meal(ctx, msg):
         and (len(msg) == 6 or len(msg) == 8)
     ):
         # 사용자가 입력한 날짜로 설정
-        today_time = msg
+        mlsv_ymd = msg
         y = msg[:-4]
         m = msg[-4:-2]
         d = msg[-2:]
@@ -91,7 +91,7 @@ async def today_meal(ctx, msg):
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": m_s_code,
-        "MLSV_YMD": today_time,
+        "MLSV_YMD": mlsv_ymd,
     }
 
     # meal_parser함수 실행
@@ -112,7 +112,7 @@ async def tomorrow_meal(ctx, msg):
     m_s_code = "2"
 
     # 내일 날짜 구하기
-    tomorrow_time = int(datetime.now().strftime("%Y%m%d")) + 1
+    mlsv_ymd = int(datetime.now().strftime("%Y%m%d")) + 1
     tomorrow_y = int(datetime.now().strftime("%Y"))
     tomorrow_m = int(datetime.now().strftime("%m"))
     tomorrow_d = int(datetime.now().strftime("%d")) + 1
@@ -138,7 +138,7 @@ async def tomorrow_meal(ctx, msg):
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": m_s_code,
-        "MLSV_YMD": tomorrow_time,
+        "MLSV_YMD": mlsv_ymd,
     }
 
     # meal_parser함수 실행
@@ -158,7 +158,7 @@ async def tomorrow_meal(ctx, msg):
 # 특정 채널로 급식(중식)정보 보내기
 async def meal_noti(bot):
     # 현재 날짜 구하기
-    today_time = datetime.now().strftime("%Y%m%d")
+    mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
@@ -170,7 +170,7 @@ async def meal_noti(bot):
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
         "MMEAL_SC_CODE": "2",
-        "MLSV_YMD": today_time,
+        "MLSV_YMD": mlsv_ymd,
     }
 
     # meal_parser함수 실행
