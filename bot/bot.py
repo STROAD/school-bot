@@ -130,156 +130,162 @@ async def on_ready():
 
 
 # 도움말
-@bot.command()
-async def 도움말(ctx, *, msg=None):
-    if msg == None:
-        embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
-        embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
-        embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
-        embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
-        embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
-        embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
-        embed.add_field(
-            name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False
-        )
-        embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
-        embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
-        embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
+@bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
+async def help(ctx):
+    embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
+    embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
+    embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
+    embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
+    embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
+    embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
+    embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
+    embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
+    embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
+    embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 정보 명령어 도움말
-    elif msg == "정보" or msg == "Info" or msg == "info":
-        embed = Embed(
-            title="***도움말(정보 명령어)***",
-            description="사용법: `!정보` or `!info`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="School_Bot의 정보를 확인할 수 있습니다.",
-            inline=False,
-        )
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+# 정보 명령어 도움말
+@help.command(aliases=["Info", "정보"])
+async def info(ctx):
+    embed = Embed(
+        title="***도움말(정보 명령어)***",
+        description="사용법: `!정보` or `!info`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="School_Bot의 정보를 확인할 수 있습니다.",
+        inline=False,
+    )
 
-    # 안녕 명령어 도움말
-    elif msg == "안녕" or msg == "Hi" or msg == "hi":
-        embed = Embed(
-            title="***도움말(안녕 명령어)***",
-            description="사용법: `!안녕` or `!hi`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="School_Bot과 인사할 수 있습니다.",
-            inline=False,
-        )
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 현재시간 명령어 도움말
-    elif msg == "현재시간" or msg == "시간" or msg == "time":
-        embed = Embed(
-            title="***도움말(현재시간 명령어)***",
-            description="사용법: `!현재시간` or `!time`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="현재시간을 확인할 수 있습니다.",
-            inline=False,
-        )
+# 안녕 명령어 도움말
+@help.command(aliases=["Hi", "안녕", "반가워"])
+async def hi(ctx):
+    embed = Embed(
+        title="***도움말(안녕 명령어)***",
+        description="사용법: `!안녕` or `!hi`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="School_Bot과 인사할 수 있습니다.",
+        inline=False,
+    )
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 지연시간 확인 명령어 도움말
-    elif msg == "핑" or msg == "ping":
-        embed = Embed(
-            title="***도움말(지연시간 확인 명령어)***",
-            description="사용법: `!핑` or `!time`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="School_Bot의 지연시간을 확인할 수 있습니다.",
-            inline=False,
-        )
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+# 현재시간 명령어 도움말
+@help.command(aliases=["Time", "현재시간", "시간"])
+async def time(ctx):
+    embed = Embed(
+        title="***도움말(현재시간 명령어)***",
+        description="사용법: `!현재시간` or `!time`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="현재시간을 확인할 수 있습니다.",
+        inline=False,
+    )
 
-    # 시간표 명령어 도움말
-    elif msg == "시간표":
-        embed = Embed(
-            title="***도움말(시간표 명령어)***",
-            description="사용법: `!시간표`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="시간표를 확인할 수 있습니다.",
-            inline=False,
-        )
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 급식 명령어 도움말
-    elif msg == "급식" or msg == "오늘급식" or msg == "내일급식":
-        today = datetime.now().strftime("%Y%m%d")
+# 지연시간 확인 명령어 도움말
+@help.command(aliases=["Ping", "핑"])
+async def ping(ctx):
+    embed = Embed(
+        title="***도움말(지연시간 확인 명령어)***",
+        description="사용법: `!핑` or `!time`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="School_Bot의 지연시간을 확인할 수 있습니다.",
+        inline=False,
+    )
 
-        embed = Embed(
-            title="***도움말(급식 명령어)***", description="사용법: `!급식 [날짜]`", colour=0xFFFF8D
-        )
-        embed.add_field(
-            name="상세정보",
-            value="오늘의 급식, 내일의 급식 혹은 사용자가 입력한 날짜의 급식(중식)을 확인할 수 있습니다.\n\n\
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
+
+# 시간표 명령어 도움말
+@help.command()
+async def 시간표(ctx):
+    embed = Embed(
+        title="***도움말(시간표 명령어)***",
+        description="사용법: `!시간표`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="시간표를 확인할 수 있습니다.",
+        inline=False,
+    )
+
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
+
+# 급식 명령어 도움말
+@help.command(aliases=["오늘급식", "내일급식"])
+async def 급식(ctx):
+    today = datetime.now().strftime("%Y%m%d")
+
+    embed = Embed(
+        title="***도움말(급식 명령어)***", description="사용법: `!급식 [날짜]`", colour=0xFFFF8D
+    )
+    embed.add_field(
+        name="상세정보",
+        value="오늘의 급식, 내일의 급식 혹은 사용자가 입력한 날짜의 급식(중식)을 확인할 수 있습니다.\n\n\
 `!오늘급식` 명령어를 통해 오늘의 급식(중식)을 확인할 수 있습니다.\n\
 `!오늘급식 석식` 명령어를 통해 오늘의 급식(석식)을 확인할 수 있습니다.\n\n\
 `!내일급식` 명령어를 통해 내일의 급식(중식)을 확인할 수 있습니다.\n\
 `!내일급식 석식` 명령어를 통해 내일의 급식(석식)을 확인할 수 있습니다.",
-            inline=False,
-        )
-        embed.add_field(name="**예시**", value=f"`!급식 {today}`", inline=False)
+        inline=False,
+    )
+    embed.add_field(name="**예시**", value=f"`!급식 {today}`", inline=False)
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 버스 도착 정보 확인 명령어 도움말
-    elif msg == "버스" or msg == "집버스" or msg == "학교버스":
-        embed = Embed(
-            title="***도움말(버스 도착 정보 확인 명령어)***",
-            description="사용법: `!집버스` or `!학교버스`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="`!집버스` 명령어로 집으로 가는 버스의 도착 예정 정보를 확인할 수 있습니다.\n\
+
+# 버스 도착 정보 확인 명령어 도움말
+@help.command(aliases=["집버스", "학교버스"])
+async def 버스(ctx):
+    embed = Embed(
+        title="***도움말(버스 도착 정보 확인 명령어)***",
+        description="사용법: `!집버스` or `!학교버스`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="`!집버스` 명령어로 집으로 가는 버스의 도착 예정 정보를 확인할 수 있습니다.\n\
 `!학교버스` 명령어로 학교로 가는 버스의 도착 예정 정보를 확인할 수 있습니다.",
-            inline=False,
-        )
+        inline=False,
+    )
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 날씨정보 확인 명령어 도움말
-    elif msg == "날씨":
-        embed = Embed(
-            title="***도움말(날씨정보 확인 명령어)***",
-            description="사용법: `!날씨`",
-            colour=0xFFFF8D,
-        )
-        embed.add_field(
-            name="상세정보",
-            value="특정지역의 날씨(단기예보)정보를 확인을 확인할 수 있습니다.",
-            inline=False,
-        )
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+# 날씨정보 확인 명령어 도움말
+@help.command()
+async def 날씨(ctx):
+    embed = Embed(
+        title="***도움말(날씨정보 확인 명령어)***",
+        description="사용법: `!날씨`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="특정지역의 날씨(단기예보)정보를 확인을 확인할 수 있습니다.",
+        inline=False,
+    )
 
-    # 그 외의 문자를 입력하면 오류메시지 전송
-    else:
-        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
-        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
-
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 정보
