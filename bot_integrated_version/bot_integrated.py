@@ -129,7 +129,7 @@ GitHub = "https://github.com/STROAD/school-bot"
 
 
 # 명령어 접두어
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!", help_command=None)
 
 
 # 봇 시작
