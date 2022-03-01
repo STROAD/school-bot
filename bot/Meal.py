@@ -11,8 +11,18 @@ meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 
 
 # 급식정보 가져오기
-async def meal_parser(meal_params):
+async def meal_parser(m_s_code, mlsv_ymd):
     global meal, msm
+
+    # 급식 파라미터
+    meal_params = {
+        "key": meal_KEY,
+        "Type": "xml",
+        "ATPT_OFCDC_SC_CODE": "#수정하기#",
+        "SD_SCHUL_CODE": "#수정하기#",
+        "MMEAL_SC_CODE": m_s_code,
+        "MLSV_YMD": mlsv_ymd,
+    }
 
     # 급식정보 XML로 받아오기
     response = get(meal_url, meal_params)
@@ -84,18 +94,8 @@ async def today_meal(ctx, msg):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 급식 파라미터
-    meal_params = {
-        "key": meal_KEY,
-        "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "#수정하기#",
-        "SD_SCHUL_CODE": "#수정하기#",
-        "MMEAL_SC_CODE": m_s_code,
-        "MLSV_YMD": mlsv_ymd,
-    }
-
     # meal_parser함수 실행
-    await meal_parser(meal_params)
+    await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
@@ -131,18 +131,8 @@ async def tomorrow_meal(ctx, msg):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    # 급식 파라미터
-    meal_params = {
-        "key": meal_KEY,
-        "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "#수정하기#",
-        "SD_SCHUL_CODE": "#수정하기#",
-        "MMEAL_SC_CODE": m_s_code,
-        "MLSV_YMD": mlsv_ymd,
-    }
-
     # meal_parser함수 실행
-    await meal_parser(meal_params)
+    await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
@@ -157,24 +147,16 @@ async def tomorrow_meal(ctx, msg):
 
 # 특정 채널로 급식(중식)정보 보내기
 async def meal_noti(bot):
+    m_s_code = "2"
+
     # 현재 날짜 구하기
     mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
 
-    # 급식 파라미터
-    meal_params = {
-        "key": meal_KEY,
-        "Type": "xml",
-        "ATPT_OFCDC_SC_CODE": "#수정하기#",
-        "SD_SCHUL_CODE": "#수정하기#",
-        "MMEAL_SC_CODE": "2",
-        "MLSV_YMD": mlsv_ymd,
-    }
-
     # meal_parser함수 실행
-    await meal_parser(meal_params)
+    await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
