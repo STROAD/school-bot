@@ -137,7 +137,7 @@ bot = commands.Bot(command_prefix="!", help_command=None)
 async def on_ready():
     await bot.change_presence(
         status=Status.online,
-        activity=Activity(type=ActivityType.listening, name="!도움말"),
+        activity=Activity(type=ActivityType.listening, name="!도움말, !help"),
     )
     print(f"{bot.user.name}({bot.user.id}) 연결 완료")
 
