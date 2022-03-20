@@ -50,9 +50,6 @@ async def meal_parser(m_s_code, mlsv_ymd):
 
 # 오늘급식 or 사용자가 입력한 날짜의 급식
 async def today_meal(ctx, msg):
-    # 기본적으로 중식정보를 받아오도록 함
-    m_s_code = "2"
-
     # 현재 날짜 구하기
     mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
@@ -61,7 +58,7 @@ async def today_meal(ctx, msg):
 
     # `!급식` 뒤에 날짜를 입력하지 않았을 경우
     if msg == None:
-        pass
+        m_s_code = "2"
 
     # `!급식` 뒤에 석식을 입력했을 경우
     elif msg == "석식":
@@ -75,6 +72,7 @@ async def today_meal(ctx, msg):
         and (len(msg) == 6 or len(msg) == 8)
     ):
         # 사용자가 입력한 날짜로 설정
+        m_s_code = "2"
         mlsv_ymd = msg
         y = msg[:-4]
         m = msg[-4:-2]
@@ -108,9 +106,6 @@ async def today_meal(ctx, msg):
 
 # 내일급식
 async def tomorrow_meal(ctx, msg):
-    # 기본적으로 중식정보를 받아오도록 함
-    m_s_code = "2"
-
     # 내일 날짜 구하기
     mlsv_ymd = int(datetime.now().strftime("%Y%m%d")) + 1
     tomorrow_y = int(datetime.now().strftime("%Y"))
@@ -119,7 +114,7 @@ async def tomorrow_meal(ctx, msg):
 
     # `!내일급식` 뒤에 아무것도 입력하지 않았을 경우
     if msg == None:
-        pass
+        m_s_code = "2"
 
     # `!내일급식` 뒤에 석식을 입력했을 경우
     elif msg == "석식":
