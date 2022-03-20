@@ -515,8 +515,6 @@ Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpci
 
 # 버스정보 가져오기
 async def bus_parser(nodeid, routeid):
-    global minute, second, cnt, nodenm
-
     # 버스 파라미터
     Bus_params = {
         "serviceKey": open_API_KEY,
@@ -540,6 +538,8 @@ async def bus_parser(nodeid, routeid):
     second = arrtime % 60
     minute = int(arrtime / 60 % 60)
 
+    return cnt, nodenm, second, minute
+
 
 # 집버스
 @bot.command(aliases=["집", "ㅈ"])
@@ -547,7 +547,7 @@ async def 집버스(ctx):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
-    await bus_parser(nodeid, routeid)
+    cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
 
     embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
@@ -565,7 +565,7 @@ async def 학교버스(ctx):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
-    await bus_parser(nodeid, routeid)
+    cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
 
     embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
