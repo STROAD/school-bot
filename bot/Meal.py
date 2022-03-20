@@ -12,8 +12,6 @@ meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 
 # 급식정보 가져오기
 async def meal_parser(m_s_code, mlsv_ymd):
-    global meal, msm
-
     # 급식 파라미터
     meal_params = {
         "key": meal_KEY,
@@ -46,6 +44,8 @@ async def meal_parser(m_s_code, mlsv_ymd):
     elif result_code == "INFO-200":
         meal = "급식정보가 존재하지 않습니다."
         msm = " "
+
+    return meal, msm
 
 
 # 오늘급식 or 사용자가 입력한 날짜의 급식
@@ -95,7 +95,7 @@ async def today_meal(ctx, msg):
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
     # meal_parser함수 실행
-    await meal_parser(m_s_code, mlsv_ymd)
+    meal, msm = await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
@@ -132,7 +132,7 @@ async def tomorrow_meal(ctx, msg):
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
     # meal_parser함수 실행
-    await meal_parser(m_s_code, mlsv_ymd)
+    meal, msm = await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
@@ -156,7 +156,7 @@ async def meal_noti(bot):
     d = datetime.now().strftime("%d")
 
     # meal_parser함수 실행
-    await meal_parser(m_s_code, mlsv_ymd)
+    meal, msm = await meal_parser(m_s_code, mlsv_ymd)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
