@@ -514,8 +514,16 @@ Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpci
 
 
 # 버스정보 가져오기
-async def bus_parser(Bus_params):
+async def bus_parser(nodeid, routeid):
     global minute, second, cnt, nodenm
+
+    # 버스 파라미터
+    Bus_params = {
+        "serviceKey": open_API_KEY,
+        "cityCode": "#수정하기#",
+        "nodeId": nodeid,
+        "routeId": routeid,
+    }
 
     # 버스 정보 XML로 받아오기
     response = requests.get(Bus_URL, params=Bus_params)
@@ -536,15 +544,10 @@ async def bus_parser(Bus_params):
 # 집버스
 @bot.command(aliases=["집", "ㅈ"])
 async def 집버스(ctx):
-    # 버스 파라미터
-    Bus_params = {
-        "serviceKey": open_API_KEY,
-        "cityCode": "#수정하기#",
-        "nodeId": "#수정하기#",
-        "routeId": "#수정하기#",
-    }
+    nodeid = "#수정하기#"
+    routeid = "#수정하기#"
 
-    await bus_parser(Bus_params)
+    await bus_parser(nodeid, routeid)
 
     embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
@@ -559,15 +562,10 @@ async def 집버스(ctx):
 # 학교 버스
 @bot.command(aliases=["학교", "ㅎㄱ"])
 async def 학교버스(ctx):
-    # 버스 파라미터
-    Bus_params = {
-        "serviceKey": open_API_KEY,
-        "cityCode": "#수정하기#",
-        "nodeId": "#수정하기#",
-        "routeId": "#수정하기#",
-    }
+    nodeid = "#수정하기#"
+    routeid = "#수정하기#"
 
-    await bus_parser(Bus_params)
+    await bus_parser(nodeid, routeid)
 
     embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
