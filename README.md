@@ -1,6 +1,6 @@
 # school-bot
 
-school bot은 [Python](https://www.python.org) 3.10.2에서 [nextcord](https://github.com/nextcord/nextcord) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
+school bot은 [Python](https://www.python.org) 3.10.2에서 [discord.py](https://github.com/Rapptz/discord.py) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [국토교통부_(TAGO)_버스도착정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098530), [기상청_단기예보 ((구)_동네예보) 조회서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084))
 
 
@@ -27,7 +27,7 @@ school bot은 [Python](https://www.python.org) 3.10.2에서 [nextcord](https://g
 
 3. 봇 구동에 필요한 라이브러리 설치
     ```
-    pip install nextcord  
+    pip install discord.py  
     pip install requests
     ```
 
