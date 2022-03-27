@@ -1,4 +1,4 @@
-from nextcord import Embed
+from discord import Embed
 from datetime import datetime
 import requests
 from config import open_API_KEY

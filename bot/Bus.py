@@ -1,4 +1,4 @@
-from nextcord import Embed
+from discord import Embed
 from requests import get
 from xml.etree.ElementTree import fromstring
 from config import open_API_KEY

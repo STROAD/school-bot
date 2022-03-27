@@ -1,5 +1,5 @@
-from nextcord import Status, Activity, ActivityType, Embed
-from nextcord.ext import commands, tasks
+from discord import Status, Activity, ActivityType, Embed
+from discord.ext import commands, tasks
 from datetime import datetime
 import requests
 from xml.etree.ElementTree import fromstring

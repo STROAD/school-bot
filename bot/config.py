@@ -1,4 +1,4 @@
-from nextcord import Status, Activity, ActivityType
+from discord import Status, Activity, ActivityType
 
 
 # 토큰

@@ -1,5 +1,5 @@
-from nextcord import Embed
-from nextcord.ext import commands, tasks
+from discord import Embed
+from discord.ext import commands, tasks
 from datetime import datetime
 from config import Token, bot_status, bot_activity, schedule, GitHub
 from Meal import today_meal, tomorrow_meal, meal_noti
