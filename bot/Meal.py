@@ -11,12 +11,16 @@ meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 
 
 # 급식정보 가져오기
-async def meal_parser(m_s_code):
+async def meal_parser(m_s_code, date):
     # 현재 날짜 구하기
     mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
+
+    # date의 값이 있을경우 mlsv_ymd를 사용자가 입력한 값으로 설정
+    if date != None:
+        mlsv_ymd = date
 
     # 급식 파라미터
     meal_params = {
@@ -56,6 +60,9 @@ async def meal_parser(m_s_code):
 
 # 오늘급식 or 사용자가 입력한 날짜의 급식
 async def today_meal(ctx, msg):
+    # 기본적으로 date의 값이 없도록 설정
+    date = None
+
     # `!급식` 뒤에 날짜를 입력하지 않았을 경우
     if msg == None:
         m_s_code = "2"
@@ -73,7 +80,7 @@ async def today_meal(ctx, msg):
     ):
         # 사용자가 입력한 날짜로 설정
         m_s_code = "2"
-        mlsv_ymd = msg
+        date = msg
         y = msg[:-4]
         m = msg[-4:-2]
         d = msg[-2:]
@@ -93,7 +100,7 @@ async def today_meal(ctx, msg):
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
     # meal_parser함수 실행
-    meal, msm, y, m, d = await meal_parser(m_s_code)
+    meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
@@ -143,9 +150,10 @@ async def tomorrow_meal(ctx, msg):
 # 특정 채널로 급식(중식)정보 보내기
 async def meal_noti(bot):
     m_s_code = "2"
+    date = None
 
     # meal_parser함수 실행
-    meal, msm, y, m, d = await meal_parser(m_s_code)
+    meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
     embed = Embed(
         title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
