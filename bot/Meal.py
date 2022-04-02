@@ -103,7 +103,7 @@ async def today_meal(ctx, msg):
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
     embed = Embed(
-        title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
+        title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
     embed.set_footer(text=f"{msm}")
@@ -120,7 +120,7 @@ async def meal_noti(bot):
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
     embed = Embed(
-        title=f"***{y}년 {m}월 {d}일 급식***", description="\u200B", colour=0xB0BEC5
+        title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
     embed.set_footer(text=f"{msm}")
