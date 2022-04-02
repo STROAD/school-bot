@@ -303,7 +303,7 @@ async def info(ctx):
 # 인사
 @bot.command(aliases=["안녕", "반가워", "Hi"])
 async def hi(ctx):
-    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**", reference=ctx.message)
+    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**  👋", reference=ctx.message)
 
 
 # 시간
