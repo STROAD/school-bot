@@ -618,12 +618,16 @@ async def 날씨(ctx):
 
                 if sky_code == "1":
                     sky = "맑음"
+                    sem = "☀️"
                 elif sky_code == "3":
                     sky = "구름많음"
+                    sem = "🌥️"
                 elif sky_code == "4":
                     sky = "흐림"
+                    sem = "☁️"
                 else:
                     sky = "정보없음"
+                    sem = ""
 
             # 강수형태
             if item["category"] == "PTY":
@@ -633,14 +637,19 @@ async def 날씨(ctx):
                     pty = "강수없음"
                 elif pty_code == "1":
                     pty = "비"
+                    pem = "🌧️"
                 elif pty_code == "2":
                     pty = "비/눈"
+                    pem = "💧❄️"
                 elif pty_code == "3":
                     pty = "눈"
+                    pem = "🌨️"
                 elif pty_code == "4":
                     pty = "소나기"
+                    pem = "☔"
                 else:
                     pty = "정보없음"
+                    pem = ""
 
             # 강수확률
             if item["category"] == "POP":
@@ -664,20 +673,20 @@ async def 날씨(ctx):
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = Embed(title="***날씨 정보***", description="#수정하기#동", colour=0x2196F3)
-    embed.add_field(name="***기온***", value=f"{tmp}°C")
-    embed.add_field(name="***습도***", value=f"{reh}%")
-    embed.add_field(name="***하늘***", value=f"{sky}")
-    embed.add_field(name="***강수확률***", value=f"{pop}%")
+    embed = Embed(title="🏞️ ***날씨 정보***  🏞️", description="#수정하기#동", colour=0x2196F3)
+    embed.add_field(name="***기온***  🌡️", value=f"{tmp}°C")
+    embed.add_field(name="***습도***  💧", value=f"{reh}%")
+    embed.add_field(name=f"***하늘***  {sem}", value=f"{sky}")
+    embed.add_field(name="***강수확률***  💧", value=f"{pop}%")
     # 강수형태가 있을 경우에만 임베드 추가
     if pty_code != "0":
-        embed.add_field(name="**강수형태**", value=f"{pty}")
+        embed.add_field(name=f"***강수형태***  {pem}", value=f"{pty}")
     # 강수량이 있을 경우에만 임베드 추가
     if pcp != "강수없음":
-        embed.add_field(name="**강수량**", value=f"{pcp}")
+        embed.add_field(name="***강수량***  💧", value=f"{pcp}")
     # 적설이 있을 경우에만 임베드 추가
     if sno != "적설없음":
-        embed.add_field(name="**적설량**", value=f"{sno}")
+        embed.add_field(name="***적설량***  ❄️", value=f"{sno}")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
