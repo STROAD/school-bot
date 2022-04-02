@@ -474,43 +474,6 @@ async def 급식(ctx, *, msg=None):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
-# 내일급식
-@bot.command(aliases=["ㄴㅇㄱㅅ", "ㄴㅇ"])
-async def 내일급식(ctx, *, msg=None):
-    # 내일 날짜 구하기
-    mlsv_ymd = int(datetime.now().strftime("%Y%m%d")) + 1
-    tomorrow_y = int(datetime.now().strftime("%Y"))
-    tomorrow_m = int(datetime.now().strftime("%m"))
-    tomorrow_d = int(datetime.now().strftime("%d")) + 1
-
-    # `!내일급식` 뒤에 아무것도 입력하지 않았을 경우
-    if msg == None:
-        m_s_code = "2"
-
-    # `!내일급식` 뒤에 석식을 입력했을 경우
-    elif msg == "석식":
-        m_s_code = "3"
-
-    else:
-        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
-        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
-
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
-
-    # meal_parser함수 실행
-    meal, msm, y, m, d = await meal_parser(m_s_code)
-
-    embed = Embed(
-        title=f"***{tomorrow_y}년 {tomorrow_m}월 {tomorrow_d}일 급식***",
-        description="\u200B",
-        colour=0xB0BEC5,
-    )
-    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
-    embed.set_footer(text=f"{msm}")
-
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
-
-
 # 버스 API URL
 Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
