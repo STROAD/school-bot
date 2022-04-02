@@ -43,7 +43,7 @@ async def bus_home(ctx):
 
     cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
 
-    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
+    embed = Embed(title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
@@ -60,7 +60,7 @@ async def bus_school(ctx):
 
     cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
 
-    embed = Embed(title="***버스 도착 정보***", description="\u200B", colour=0x81C784)
+    embed = Embed(title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784)
     embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
     embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
     embed.add_field(
