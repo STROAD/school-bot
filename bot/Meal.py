@@ -112,8 +112,7 @@ async def today_meal(ctx, msg):
 
 
 # 특정 채널로 급식(중식)정보 보내기
-async def meal_noti(bot):
-    m_s_code = "2"
+async def meal_noti(bot, m_s_code):
     date = None
 
     # meal_parser함수 실행

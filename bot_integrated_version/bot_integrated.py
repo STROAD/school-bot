@@ -145,7 +145,7 @@ async def on_ready():
 # 도움말
 @bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
 async def help(ctx):
-    embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
+    embed = Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
     embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
@@ -689,7 +689,7 @@ async def 날씨(ctx):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
-# 특정 시간에 급식(중식)정보 보내기
+# 특정 시간에 급식(중식, 석식)정보 보내기
 @tasks.loop(seconds=1)
 async def meal_noti():
     # 기본적으로 date의 값이 없도록 설정
@@ -704,6 +704,29 @@ async def meal_noti():
         and datetime.now().second == 30
     ):
         m_s_code = "2"
+
+        # meal_parser함수 실행
+        meal, msm, y, m, d = await meal_parser(m_s_code, date)
+
+        embed = Embed(
+            title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️",
+            description="\u200B",
+            colour=0xB0BEC5,
+        )
+        embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+        embed.set_footer(text=f"{msm}")
+
+        await bot.get_channel("#수정하기#").send(embed=embed)
+
+    # 월~금 요일의 18:30:00 PM 일때
+    if (
+        datetime.now().strftime("%p") == "PM"
+        and 0 <= datetime.now().weekday() < 5
+        and datetime.now().hour == 18
+        and datetime.now().minute == 30
+        and datetime.now().second == 00
+    ):
+        m_s_code = "3"
 
         # meal_parser함수 실행
         meal, msm, y, m, d = await meal_parser(m_s_code, date)

@@ -132,7 +132,7 @@ async def on_ready():
 # 도움말
 @bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
 async def help(ctx):
-    embed = Embed(title="***도움말***", description="명령어 리스트", colour=0xFFFF8D)
+    embed = Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
     embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
@@ -375,7 +375,18 @@ async def meal_Notification():
         and datetime.now().second == 30
     ):
         # meal_noti함수 실행
-        await meal_noti(bot)
+        await meal_noti(bot, m_s_code="2")
+
+    # 월~금 요일의 18:30:00 PM 일때
+    if (
+        datetime.now().strftime("%p") == "PM"
+        and 0 <= datetime.now().weekday() < 5
+        and datetime.now().hour == 18
+        and datetime.now().minute == 30
+        and datetime.now().second == 00
+    ):
+        # meal_noti함수 실행
+        await meal_noti(bot, m_s_code="3")
 
 
 meal_Notification.start()
