@@ -374,8 +374,10 @@ async def meal_Notification():
         and datetime.now().minute == 30
         and datetime.now().second == 30
     ):
+        m_s_code = "2"
+
         # meal_noti함수 실행
-        await meal_noti(bot, m_s_code="2")
+        await meal_noti(bot, m_s_code)
 
     # 월~금 요일의 18:30:00 PM 일때
     if (
@@ -385,8 +387,10 @@ async def meal_Notification():
         and datetime.now().minute == 30
         and datetime.now().second == 00
     ):
+        m_s_code = "3"
+
         # meal_noti함수 실행
-        await meal_noti(bot, m_s_code="3")
+        await meal_noti(bot, m_s_code)
 
 
 meal_Notification.start()
