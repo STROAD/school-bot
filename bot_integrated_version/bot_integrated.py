@@ -151,7 +151,7 @@ async def help(ctx):
     embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
     embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
-    embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식\n!내일급식`", inline=False)
+    embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
     embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
     embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
@@ -245,7 +245,7 @@ async def 시간표(ctx):
 
 
 # 급식 명령어 도움말
-@help.command(aliases=["오늘급식", "내일급식"])
+@help.command(aliases=["오늘급식"])
 async def 급식(ctx):
     today = datetime.now().strftime("%Y%m%d")
 
@@ -256,9 +256,7 @@ async def 급식(ctx):
         name="상세정보",
         value="오늘의 급식, 내일의 급식 혹은 사용자가 입력한 날짜의 급식(중식)을 확인할 수 있습니다.\n\n\
 `!오늘급식` 명령어를 통해 오늘의 급식(중식)을 확인할 수 있습니다.\n\
-`!오늘급식 석식` 명령어를 통해 오늘의 급식(석식)을 확인할 수 있습니다.\n\n\
-`!내일급식` 명령어를 통해 내일의 급식(중식)을 확인할 수 있습니다.\n\
-`!내일급식 석식` 명령어를 통해 내일의 급식(석식)을 확인할 수 있습니다.",
+`!오늘급식 석식` 명령어를 통해 오늘의 급식(석식)을 확인할 수 있습니다.",
         inline=False,
     )
     embed.add_field(name="**예시**", value=f"`!급식 {today}`", inline=False)
