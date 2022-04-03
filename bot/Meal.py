@@ -21,6 +21,16 @@ async def meal_parser(m_s_code, date):
     # date의 값이 있을경우 mlsv_ymd를 사용자가 입력한 값으로 설정
     if date != None:
         mlsv_ymd = date
+        y = date[:-4]
+        m = date[-4:-2]
+        d = date[-2:]
+
+        # 년도를 2글자만 썼을경우 앞에 20을 붙여줌
+        if len(y) == 2:
+            y = "20" + y
+        # 4글자 모두 입력했으면 pass
+        elif len(y) == 4:
+            pass
 
     # 급식 파라미터
     meal_params = {
@@ -81,16 +91,6 @@ async def today_meal(ctx, msg):
         # 사용자가 입력한 날짜로 설정
         m_s_code = "2"
         date = msg
-        y = msg[:-4]
-        m = msg[-4:-2]
-        d = msg[-2:]
-
-        # 년도를 2글자만 썼을경우 앞에 20을 붙여줌
-        if len(y) == 2:
-            y = "20" + y
-        # 4글자 모두 입력했으면 pass
-        elif len(y) == 4:
-            pass
 
     # 잘못된 날짜를 입력하면 오류 메시지를 출력
     else:
