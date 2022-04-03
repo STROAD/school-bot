@@ -1,6 +1,6 @@
 # school-bot
 
-school bot은 [Python](https://www.python.org) 3.10.2에서 [discord.py](https://github.com/Rapptz/discord.py) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
+school bot은 [Python](https://www.python.org) 3.10.4에서 [discord.py](https://github.com/Rapptz/discord.py) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [국토교통부_(TAGO)_버스도착정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098530), [기상청_단기예보 ((구)_동네예보) 조회서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084))
 
 
@@ -14,12 +14,12 @@ school bot은 [Python](https://www.python.org) 3.10.2에서 [discord.py](https:/
 
 
 ## 명령어
-`!도움말`로 모든 명령어를 확인할 수 있습니다.
+`!도움말` 또는 `!help`로 모든 명령어를 확인할 수 있습니다.
 
 
 ## 설치
-1. [Python](https://www.python.org)(3.10.2) 설치  
-    (3.10.2 이외의 버전에서는 작동이 안될 수 있습니다.)
+1. [Python](https://www.python.org)(3.10.4) 설치  
+    (3.10.4 이외의 버전에서는 작동이 안될 수 있습니다.)
 
 2. Repository clone  
     이 레포지트리를 clone합니다.  
