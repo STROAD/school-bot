@@ -54,8 +54,8 @@ async def meal_parser(m_s_code, date):
     if result_code == "INFO-000":
         # 급식메뉴만 추출
         meal = str(meal_xml.findtext(".//DDISH_NM"))
-        meal = sub("(<([^>]+)>)", "\n", meal)
-        meal = sub("[0-9.]", "", meal)
+        meal = sub("<br/>", "\n", meal)
+        meal = sub("[(\d.) ]+", "", meal)
 
         # 식사명 찾기
         msm = f'({meal_xml.findtext(".//MMEAL_SC_NM")})'
