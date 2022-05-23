@@ -489,6 +489,7 @@ async def bus_parser(nodeid, routeid):
     # 버스 정보 XML로 받아오기
     response = requests.get(Bus_URL, params=Bus_params)
     bus_xml = fromstring(response.content)
+    bus_xml = bus_xml.find("body/items")
 
     # 도착 예정 시간
     arrtime = int(bus_xml.findtext(".//arrtime"))
