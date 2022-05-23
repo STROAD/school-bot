@@ -23,6 +23,16 @@ async def bus_parser(nodeid, routeid):
     bus_xml = fromstring(response.content)
     bus_xml = bus_xml.find("body/items")
 
+    # item element가 1개 아닐경우
+    if len(bus_xml.findall("item")) != 1:
+        # 항상 가장 먼저 도착하는 버스 정보를 받아오도록 함
+        if int(bus_xml[0][1].text) < int(bus_xml[1][1].text):
+            n = 0
+        else:
+            n = 1
+    else:
+        n = 0
+
     # 도착 예정 시간
     arrtime = int(bus_xml.findtext(".//arrtime"))
     # 남은 정거장 수
