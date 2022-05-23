@@ -34,11 +34,11 @@ async def bus_parser(nodeid, routeid):
         n = 0
 
     # 도착 예정 시간
-    arrtime = int(bus_xml.findtext(".//arrtime"))
+    arrtime = int(bus_xml[n].findtext("./arrtime"))
     # 남은 정거장 수
-    cnt = f"(남은 정거장 수 : {bus_xml.findtext('.//arrprevstationcnt')})"
+    cnt = f'(남은 정거장 수 : {bus_xml[n].findtext("./arrprevstationcnt")})'
     # 정거장 이름
-    nodenm = bus_xml.findtext(".//nodenm")
+    nodenm = bus_xml[n].findtext("./nodenm")
 
     # 도착 예정 시간 초를 분,초로 변환
     second = arrtime % 60
