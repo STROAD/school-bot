@@ -33,11 +33,10 @@ school bot은 [Python](https://www.python.org) 3.10.4에서 [discord.py](https:/
 
 4. 파일 수정  
     1. config.py 파일에 자신의 봇 토큰, 인증키 등을 입력하여 주세요.  
-    2. bot.py, Meal.py, Bus.py, Weather.py 파일에서 `#수정하기#`를 삭제후 해당하는값을 넣어주세요.  
-    (통합버전(bot_integrated.py)을 사용하는 경우 bot_integrated.py파일만 수정하면 됨)
+    2. bot.py, Meal.py, Bus.py, Weather.py 파일에서 `#수정하기#`를 삭제후 해당하는값을 넣어주세요.
 
 5. 봇 실행  
-    bot.py(혹은 bot_integrated.py) 파일을 실행해주세요.
+    bot.py 파일을 실행해주세요.
 
 
 ## 라이선스
