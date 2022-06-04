@@ -3,7 +3,7 @@ from datetime import datetime
 from requests import get
 from xml.etree.ElementTree import fromstring
 from re import sub
-from config import meal_KEY
+from config import NIES_KEY
 
 
 # 급식 API URL
@@ -34,7 +34,7 @@ async def meal_parser(m_s_code, date):
 
     # 급식 파라미터
     meal_params = {
-        "key": meal_KEY,
+        "key": NIES_KEY,
         "Type": "xml",
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",

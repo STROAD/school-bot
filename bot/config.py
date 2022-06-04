@@ -11,7 +11,7 @@ bot_activity = Activity(type=ActivityType.listening, name="!도움말, !help")
 
 
 # 인증키
-meal_KEY = ""  # 이곳에 자신의 급식식단정보 Open API 인증키 입력
+NIES_KEY = ""  # 이곳에 자신의 나이스 Open API 인증키 입력
 open_API_KEY = ""  # 이곳에 자신의 공공데이터포털 Open API 인증키 입력, 버스 및 날씨정보 API에 이용됨
 
 
