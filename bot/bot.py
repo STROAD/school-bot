@@ -2,9 +2,9 @@ from discord import Embed
 from discord.ext import commands, tasks
 from datetime import datetime
 from config import Token, bot_status, bot_activity, schedule, GitHub
-from Meal import today_meal, meal_noti
-from Bus import bus_home, bus_school
-from Weather import weather
+from meal import today_meal, meal_noti
+from bus import bus_home, bus_school
+from weather import weather
 
 
 """API 정보
