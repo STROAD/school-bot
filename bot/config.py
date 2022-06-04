@@ -2,7 +2,7 @@ from discord import Status, Activity, ActivityType
 
 
 # 토큰
-Token = ""  # 이곳에 자신의 디스코드 봇 토큰 넣기
+TOKEN = ""  # 이곳에 자신의 디스코드 봇 토큰 넣기
 
 
 # 디스코드 봇 상태 설정

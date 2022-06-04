@@ -1,7 +1,7 @@
 from discord import Embed
 from discord.ext import commands, tasks
 from datetime import datetime
-from config import Token, bot_status, bot_activity, schedule, GITHUB
+from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
 from meal import today_meal, meal_noti
 from bus import bus_home, bus_school
 from weather import weather
@@ -394,4 +394,4 @@ async def meal_Notification():
 
 
 meal_Notification.start()
-bot.run(Token)
+bot.run(TOKEN)
