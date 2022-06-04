@@ -1,7 +1,7 @@
 from discord import Embed
 from requests import get
 from xml.etree.ElementTree import fromstring
-from config import open_API_KEY
+from config import OPEN_API_KEY
 
 
 # 버스 API URL
@@ -12,7 +12,7 @@ Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpci
 async def bus_parser(nodeid, routeid):
     # 버스 파라미터
     Bus_params = {
-        "serviceKey": open_API_KEY,
+        "serviceKey": OPEN_API_KEY,
         "cityCode": "#수정하기#",
         "nodeId": nodeid,
         "routeId": routeid,

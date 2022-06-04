@@ -1,7 +1,7 @@
 from discord import Embed
 from datetime import datetime
 import requests
-from config import open_API_KEY
+from config import OPEN_API_KEY
 
 
 # 날씨 API URL
@@ -47,7 +47,7 @@ async def weather(ctx):
 
     # 날씨 파라미터
     weather_params = {
-        "ServiceKey": open_API_KEY,
+        "ServiceKey": OPEN_API_KEY,
         "pageNo": "1",
         "numOfRows": "12",
         "dataType": "JSON",
