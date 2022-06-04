@@ -34,7 +34,7 @@ async def meal_parser(m_s_code, date):
 
     # 급식 파라미터
     meal_params = {
-        "key": NIES_KEY,
+        "KEY": NIES_KEY,
         "Type": "xml",
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
