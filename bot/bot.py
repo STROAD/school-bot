@@ -1,7 +1,7 @@
 from discord import Embed
 from discord.ext import commands, tasks
 from datetime import datetime
-from config import Token, bot_status, bot_activity, schedule, GitHub
+from config import Token, bot_status, bot_activity, schedule, GITHUB
 from meal import today_meal, meal_noti
 from bus import bus_home, bus_school
 from weather import weather
@@ -291,9 +291,9 @@ async def 날씨(ctx):
 async def info(ctx):
     embed = Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
     embed.add_field(name="School_Bot", value="급식, 버스, 날씨정보 확인가능", inline=False)
-    embed.add_field(name="자세한 정보는", value=f"[여기서]({GitHub}) 확인 가능", inline=False)
+    embed.add_field(name="자세한 정보는", value=f"[여기서]({GITHUB}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
-    embed.add_field(name="*버전* : 4.0.0", value=f"[GitHub]({GitHub})", inline=False)
+    embed.add_field(name="*버전* : 4.0.0", value=f"[GitHub]({GITHUB})", inline=False)
 
     await ctx.send(embed=embed)
 

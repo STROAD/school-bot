@@ -31,4 +31,4 @@ schedule = """
 
 
 # GitHub 주소
-GitHub = "https://github.com/STROAD/school-bot"
+GITHUB = "https://github.com/STROAD/school-bot"
