@@ -51,11 +51,17 @@ async def bus_parser(nodeid, routeid):
         second = arrtime % 60
         minute = int(arrtime / 60 % 60)
 
-        return cnt, nodenm, second, minute
+        bus_chk = True
 
     # 버스 정보가 없을경우
     else:
-        pass
+        cnt = None
+        nodenm = None
+        second = None
+        minute = None
+        bus_chk = False
+
+    return cnt, nodenm, second, minute, bus_chk
 
 
 # 집버스
@@ -63,14 +69,17 @@ async def bus_home(ctx):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
-    cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
+    cnt, nodenm, second, minute, bus_chk = await bus_parser(nodeid, routeid)
 
-    embed = Embed(title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784)
-    embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
-    embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
-    )
+    if bus_chk == True:
+        embed = Embed(
+            title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784
+        )
+        embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
+        embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
+        embed.add_field(
+            name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
+        )
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
@@ -80,13 +89,16 @@ async def bus_school(ctx):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
-    cnt, nodenm, second, minute = await bus_parser(nodeid, routeid)
+    cnt, nodenm, second, minute, bus_chk = await bus_parser(nodeid, routeid)
 
-    embed = Embed(title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784)
-    embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
-    embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
-    embed.add_field(
-        name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
-    )
+    if bus_chk == True:
+        embed = Embed(
+            title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784
+        )
+        embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
+        embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
+        embed.add_field(
+            name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
+        )
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
