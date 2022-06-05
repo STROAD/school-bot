@@ -81,6 +81,11 @@ async def bus_home(ctx):
             name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
         )
 
+    elif bus_chk == False:
+        embed = Embed(
+            title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
+        )
+
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
@@ -99,6 +104,11 @@ async def bus_school(ctx):
         embed.add_field(name="**정거장 정보**", value=nodenm, inline=False)
         embed.add_field(
             name="**버스 도착 예정 시간**", value=(f"{minute}분 {second}초 {cnt}"), inline=False
+        )
+
+    elif bus_chk == False:
+        embed = Embed(
+            title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
