@@ -7,3 +7,8 @@ from config import NIES_KEY
 
 # 학사일정 API URL
 schedule_url = "https://open.neis.go.kr/hub/SchoolSchedule"
+
+
+# 학사일정 정보 가져오기
+async def schedule_parser():
+    pass
