@@ -2,6 +2,7 @@ from discord import Embed
 from datetime import datetime
 from requests import get
 from xml.etree.ElementTree import fromstring
+from pandas import DataFrame
 from config import NIES_KEY
 
 
