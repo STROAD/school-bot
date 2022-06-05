@@ -23,3 +23,8 @@ async def schedule_parser():
         "AA_FROM_YMD": aa_ymd,
         "AA_TO_YMD": aa_ymd,
     }
+
+    # 학사일정 XML로 받아오기
+    response = get(schedule_url, schedule_params)
+    schedule_xml = fromstring(response.content)
+    
