@@ -13,9 +13,11 @@ weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilag
 async def weather(ctx):
     # 날짜, 시간 구하기
     now_date = int(datetime.now().strftime("%Y%m%d"))
-    yes_date = int(datetime.now().strftime("%Y%m%d")) - 1
     now_hour = int(datetime.now().strftime("%H"))
     now_min = int(datetime.now().strftime("%M"))
+    yes_date = datetime.now()
+    yes_date = str(yes_date - timedelta(days=1))[:10]
+    yes_date = int(sub("-", "", yes_date))
 
     # API 제공 시간에 맞춰 가장 최신의 정보를 받을 수 있는 시간을 설정
     if now_hour < 2 or (now_hour == 2 and now_min <= 10):
