@@ -27,4 +27,6 @@ async def schedule_parser():
     # 학사일정 XML로 받아오기
     response = get(schedule_url, schedule_params)
     schedule_xml = fromstring(response.content)
-    
+
+    # 호출결과 코드 찾기
+    result_code = schedule_xml.findtext(".//CODE")
