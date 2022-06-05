@@ -1,6 +1,7 @@
 from discord import Embed
 from datetime import datetime, timedelta
 import requests
+from re import sub
 from config import OPEN_API_KEY
 
 
