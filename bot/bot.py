@@ -18,22 +18,73 @@ rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=1)
 
 [기본인자]
 
-{변수설명}{변수명}{예시}
-인증키                = KEY     = -
-호출 문서(xml, json)  = Type    = xml
-페이지 위치           = pIndex  = 1
-페이지 당 요청 숫자   = pSize   = 100
+{변수설명}{변수명}{예시}{타입}
+인증키                = KEY     = -    = 필수
+호출 문서(xml, json)  = Type    = xml  = 필수
+페이지 위치           = pIndex  = 1    = 필수
+페이지 당 요청 숫자   = pSize   = 100  = 필수
 
 
 [요청인자]
 
-{변수설명}{변수명}{예시}
-시도교육청코드  = ATPT_OFCDC_SC_CODE  = A01
-표준학교코드    = SD_SCHUL_CODE       = 0123456
-식사코드        = MMEAL_SC_CODE       = 0
-급식일자        = MLSV_YMD            = yyyymmdd
-급식시작일자    = MLSV_FROM_YMD       = yyyymmdd
-급식종료일자    = MLSV_TO_YMD         = yyyymmdd
+{변수설명}{변수명}{예시}{타입}
+시도교육청코드  = ATPT_OFCDC_SC_CODE  = A01       = 필수
+표준학교코드    = SD_SCHUL_CODE       = 0123456   = 필수
+식사코드        = MMEAL_SC_CODE       = 0         = 선택
+급식일자        = MLSV_YMD            = yyyymmdd  = 선택
+급식시작일자    = MLSV_FROM_YMD       = yyyymmdd  = 선택
+급식종료일자    = MLSV_TO_YMD         = yyyymmdd  = 선택
+
+
+[출력값]
+
+{출력명}{출력 설명}
+SCHUL_NM        = 학교명
+MMEAL_SC_CODE   = 식사코드
+MMEAL_SC_NM     = 식사명
+MLSV_YMD        = 급식일자
+DDISH_NM        = 요리명
+1MLSV_FROM_YMD  = 급식시작일자
+1MLSV_TO_YMD    = 급식종료일자
+
+##############################################################################
+
+[나이스교육정보개방포털](학사일정)
+(https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&
+rows=10&sortColumn=&sortDirection=&infId=OPEN17220190722175038389180&infSeq=1)
+
+
+[기본인자]
+
+{변수설명}{변수명}{예시}{타입}
+인증키                = KEY     = -    = 필수
+호출 문서(xml, json)  = Type    = xml  = 필수
+페이지 위치           = pIndex  = 1    = 필수
+페이지 당 요청 숫자   = pSize   = 100  = 필수
+
+[신청인자]
+
+{변수설명}{변수명}{예시}{타입}
+시도교육청코드  = ATPT_OFCDC_SC_CODE  = A01       = 필수
+표준학교코드    = SD_SCHUL_CODE       = 0123456   = 필수
+주야과정명      = DGHT_CRSE_SC_NM     = 주간      = 선택
+학교과정명      = SCHUL_CRSE_SC_NM    = 고등학교  = 선택
+학사일자        = AA_YMD              = yyyymmdd  = 선택
+학사시작일자    = AA_FROM_YMD         = yyyymmdd  = 선택
+학사종료일자    = AA_TO_YMD           = yyyymmdd  = 선택
+
+
+[출력값]
+
+{출력명}{출력 설명}
+ATPT_OFCDC_SC_NM  = 시도교육청명
+SCHUL_NM          = 학교명
+AY                = 학년도
+SBTR_DD_SC_NM     = 수업공제일명
+AA_YMD            = 학사일자
+1EVENT_NM         = 행사명
+1EVENT_CNTNT      = 행사내용
+1LOAD_DTM         = 수정일
 
 ##############################################################################
 
