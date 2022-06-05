@@ -25,30 +25,37 @@ async def bus_parser(nodeid, routeid):
     # 호출결과 코드 찾기
     result_code = bus_xml.findtext(".//resultCode")
 
-    bus_xml = bus_xml.find("body/items")
+    # 버스 정보가 존재하는지 확인
+    # 버스 정보가 있을경우
+    if result_code == "00":
+        bus_xml = bus_xml.find("body/items")
 
-    # item element가 1개 아닐경우
-    if len(bus_xml.findall("item")) != 1:
-        # 항상 가장 먼저 도착하는 버스 정보를 받아오도록 함
-        if int(bus_xml[0][1].text) < int(bus_xml[1][1].text):
-            n = 0
+        # item element가 1개 아닐경우
+        if len(bus_xml.findall("item")) != 1:
+            # 항상 가장 먼저 도착하는 버스 정보를 받아오도록 함
+            if int(bus_xml[0][1].text) < int(bus_xml[1][1].text):
+                n = 0
+            else:
+                n = 1
         else:
-            n = 1
+            n = 0
+
+        # 도착 예정 시간
+        arrtime = int(bus_xml[n].findtext("./arrtime"))
+        # 남은 정거장 수
+        cnt = f'(남은 정거장 수 : {bus_xml[n].findtext("./arrprevstationcnt")})'
+        # 정거장 이름
+        nodenm = bus_xml[n].findtext("./nodenm")
+
+        # 도착 예정 시간 초를 분,초로 변환
+        second = arrtime % 60
+        minute = int(arrtime / 60 % 60)
+
+        return cnt, nodenm, second, minute
+
+    # 버스 정보가 없을경우
     else:
-        n = 0
-
-    # 도착 예정 시간
-    arrtime = int(bus_xml[n].findtext("./arrtime"))
-    # 남은 정거장 수
-    cnt = f'(남은 정거장 수 : {bus_xml[n].findtext("./arrprevstationcnt")})'
-    # 정거장 이름
-    nodenm = bus_xml[n].findtext("./nodenm")
-
-    # 도착 예정 시간 초를 분,초로 변환
-    second = arrtime % 60
-    minute = int(arrtime / 60 % 60)
-
-    return cnt, nodenm, second, minute
+        pass
 
 
 # 집버스
