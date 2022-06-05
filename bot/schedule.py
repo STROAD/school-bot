@@ -30,3 +30,12 @@ async def schedule_parser():
 
     # 호출결과 코드 찾기
     result_code = schedule_xml.findtext(".//CODE")
+
+    # 학사일정 정보가 존재하는지 확인
+    # 학사일정이 있을경우
+    if result_code == "INFO-000":
+        pass
+
+    # 학사일정이 없을경우
+    elif result_code == "INFO-200":
+        pass
