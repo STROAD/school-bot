@@ -39,3 +39,8 @@ async def schedule_parser():
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
         pass
+
+
+# 학사일정
+async def schedule(ctx):
+    pass
