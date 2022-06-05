@@ -21,6 +21,10 @@ async def bus_parser(nodeid, routeid):
     # 버스 정보 XML로 받아오기
     response = get(Bus_URL, params=Bus_params)
     bus_xml = fromstring(response.content)
+
+    # 호출결과 코드 찾기
+    result_code = bus_xml.findtext(".//resultCode")
+
     bus_xml = bus_xml.find("body/items")
 
     # item element가 1개 아닐경우
