@@ -403,6 +403,7 @@ async def 집버스(ctx):
     await bus_home(ctx)
 
 
+# 학교버스
 @bot.command(aliases=["학교", "ㅎㄱ"])
 async def 학교버스(ctx):
     await bus_school(ctx)
