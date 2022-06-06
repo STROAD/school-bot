@@ -83,7 +83,7 @@ async def schedule_parser():
 
 
 # 학사일정
-async def schedule(ctx):
+async def school_schedule(ctx):
     embed = await schedule_parser()
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
