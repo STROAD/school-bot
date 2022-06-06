@@ -26,8 +26,8 @@ async def schedule_parser():
         "Type": "xml",
         "ATPT_OFCDC_SC_CODE": "#수정하기#",
         "SD_SCHUL_CODE": "#수정하기#",
-        "AA_FROM_YMD": aa_ymd,
-        "AA_TO_YMD": aa_ymd,
+        "AA_FROM_YMD": aa_from_ymd,
+        "AA_TO_YMD": aa_to_ymd,
     }
 
     # 학사일정 XML로 받아오기
