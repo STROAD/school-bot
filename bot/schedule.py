@@ -54,6 +54,10 @@ async def schedule_parser():
             data = {"evn_nm": f"{evn_nm}", "aa_ymd": f"{aa_ymd}"}
             df = df.append(data, ignore_index=True)
 
+        # 행사명이 토요휴업일인 행은 삭제
+        df = df[df["evn_nm"] != "토요휴업일"]
+        df = df.reset_index(drop=True)
+
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
         pass
