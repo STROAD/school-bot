@@ -339,6 +339,24 @@ async def 날씨(ctx):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
+# 학사일정 확인 명령어 도움말
+@help.command(aliases=["ㅎㅅㅇㅈ"])
+async def 학사일정(ctx):
+    embed = Embed(
+        title="***도움말(학사일정 확인 명령어)***",
+        description="사용법: `!학사일정`",
+        colour=0xFFFF8D,
+    )
+    embed.add_field(
+        name="상세정보",
+        value="특정학교의 학사일정을 확인을 확인할 수 있습니다.\n\n\
+기본적으로 한달간의 학사일정을 확인합니다.",
+        inline=False,
+    )
+
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
+
 # 정보
 @bot.command(aliases=["정보"])
 async def info(ctx):
