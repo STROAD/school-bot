@@ -14,8 +14,11 @@ schedule_url = "https://open.neis.go.kr/hub/SchoolSchedule"
 
 # 학사일정 정보 가져오기
 async def schedule_parser():
-    # 현재 날짜 구하기
-    aa_ymd = datetime.now().strftime("%Y%m%d")
+    # 현재, 한달 뒤 날짜 구하기
+    aa_from_ymd = datetime.now()
+    aa_to_ymd = aa_from_ymd + relativedelta(months=1)
+    aa_from_ymd = sub("-", "", str(aa_from_ymd)[:10])
+    aa_to_ymd = sub("-", "", str(aa_to_ymd)[:10])
 
     # 학사일정 파라미터
     schedule_params = {
