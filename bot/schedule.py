@@ -71,6 +71,8 @@ async def schedule_parser():
 
             embed.add_field(name="~~~", value=f"{evn_nm}\n{aa_ymd}")
 
+        embed.set_footer(text=f"기간 : {aa_from_ymd} ~ {aa_to_ymd}")
+
     # 학사일정이 없을경우
     if result_code == "INFO-200":
         pass
