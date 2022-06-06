@@ -59,7 +59,7 @@ async def schedule_parser():
         df = df.reset_index(drop=True)
 
     # 학사일정이 없을경우
-    elif result_code == "INFO-200":
+    if result_code == "INFO-200":
         pass
 
 
