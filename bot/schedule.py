@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 from requests import get
 from xml.etree.ElementTree import fromstring
 from pandas import DataFrame
+from re import sub
 from config import NIES_KEY
 
 
