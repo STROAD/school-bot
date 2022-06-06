@@ -79,7 +79,11 @@ async def schedule_parser():
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 
+    return embed
+
 
 # 학사일정
 async def schedule(ctx):
-    pass
+    embed = await schedule_parser()
+
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
