@@ -45,6 +45,11 @@ async def schedule_parser():
         # 데이터 프레임 생성
         df = DataFrame([], columns=["aa_ymd", "evn_nm"])
 
+        # 행사명, 행사일자 찾기
+        for value in schedule_xml.iter("row"):
+            evn_nm = value.findtext("EVENT_NM")
+            aa_ymd = value.findtext("AA_YMD")
+
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
         pass
