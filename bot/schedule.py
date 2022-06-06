@@ -40,7 +40,8 @@ async def schedule_parser():
     # 학사일정 정보가 존재하는지 확인
     # 학사일정이 있을경우
     if result_code == "INFO-000":
-        pass
+        # 학교 이름 찾기
+        schul_nm = schedule_xml.findtext(".//SCHUL_NM")
 
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
