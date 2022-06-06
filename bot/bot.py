@@ -193,7 +193,7 @@ async def help(ctx):
     embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
     embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
-    embed.add_field(name="8. **학사일정 확인**", value="`!학사일정`", inline=False)
+    embed.add_field(name="9. **학사일정 확인**", value="`!학사일정`", inline=False)
     embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
