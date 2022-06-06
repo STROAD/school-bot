@@ -61,7 +61,7 @@ async def schedule_parser():
         embed = Embed(
             title=f"🗓️ **{schul_nm} 학사일정** 🗓️",
             description=f"**행사명\n행사일**",
-            colour=0xB0BEC5,
+            colour=0xCE93D8,
         )
 
         # for문으로 데이터 프레임의 데이터들을 순차적으로 embed에 추가
