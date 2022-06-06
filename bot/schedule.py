@@ -42,6 +42,8 @@ async def schedule_parser():
     if result_code == "INFO-000":
         # 학교 이름 찾기
         schul_nm = schedule_xml.findtext(".//SCHUL_NM")
+        # 데이터 프레임 생성
+        df = DataFrame([], columns=["aa_ymd", "evn_nm"])
 
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
