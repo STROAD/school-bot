@@ -75,7 +75,9 @@ async def schedule_parser():
 
     # 학사일정이 없을경우
     if result_code == "INFO-200":
-        pass
+        embed = Embed(
+            title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
+        )
 
 
 # 학사일정
