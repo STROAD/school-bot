@@ -5,6 +5,7 @@ from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
 from meal import today_meal, meal_noti
 from bus import bus_home, bus_school
 from weather import weather
+from schedule import school_schedule
 
 
 """API 정보
