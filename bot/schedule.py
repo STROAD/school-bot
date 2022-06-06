@@ -50,6 +50,10 @@ async def schedule_parser():
             evn_nm = value.findtext("EVENT_NM")
             aa_ymd = value.findtext("AA_YMD")
 
+            # 데이터 프레임에 행사명, 행사일자 넣기
+            data = {"evn_nm": f"{evn_nm}", "aa_ymd": f"{aa_ymd}"}
+            df = df.append(data, ignore_index=True)
+
     # 학사일정이 없을경우
     elif result_code == "INFO-200":
         pass
