@@ -58,6 +58,12 @@ async def schedule_parser():
         df = df[df["evn_nm"] != "토요휴업일"]
         df = df.reset_index(drop=True)
 
+        embed = Embed(
+            title=f"🗓️ **{schul_nm} 학사일정** 🗓️",
+            description=f"**행사명\n행사일**",
+            colour=0xB0BEC5,
+        )
+
     # 학사일정이 없을경우
     if result_code == "INFO-200":
         pass
