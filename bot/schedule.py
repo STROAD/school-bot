@@ -64,6 +64,13 @@ async def schedule_parser():
             colour=0xB0BEC5,
         )
 
+        # for문으로 데이터 프레임의 데이터들을 순차적으로 embed에 추가
+        for i in range(len(df.index)):
+            evn_nm = df["evn_nm"].values[i]
+            aa_ymd = df["aa_ymd"].values[i]
+
+            embed.add_field(name="~~~", value=f"{evn_nm}\n{aa_ymd}")
+
     # 학사일정이 없을경우
     if result_code == "INFO-200":
         pass
