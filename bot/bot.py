@@ -416,6 +416,12 @@ async def 날씨(ctx):
     await weather(ctx)
 
 
+# 학사일정
+@bot.command(aliases=["ㅎㅅㅇㅈ"])
+async def 학사일정(ctx):
+    await school_schedule(ctx)
+
+
 # 특정 시간에 급식(중식)정보 보내기
 @tasks.loop(seconds=1)
 async def meal_Notification():
