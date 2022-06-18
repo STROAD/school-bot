@@ -113,7 +113,7 @@ async def dinner(ctx, msg):
     if msg is None:
         date = None
 
-    # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
+    # `!급식 석식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
     elif (
         msg is not None
         and (0 < int(msg[-4:-2]) < 13)
