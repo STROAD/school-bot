@@ -411,12 +411,13 @@ async def 시간표(ctx):
     await ctx.send(schedule)
 
 
-# 오늘급식 or 사용자가 입력한 날짜의 급식
+# 중식
 @bot.command(aliases=["오늘급식"], invoke_without_command=True)
 async def 급식(ctx, *, msg=None):
     await lunch(ctx, msg)
 
 
+# 석식
 @bot.command()
 async def 석식(ctx, *, msg=None):
     await dinner(ctx, msg)
@@ -446,7 +447,7 @@ async def 학사일정(ctx):
     await school_schedule(ctx)
 
 
-# 특정 시간에 급식(중식)정보 보내기
+# 특정 시간에 급식(중식, 석식)정보 보내기
 @tasks.loop(seconds=1)
 async def meal_Notification():
     # 월~금 요일의 12:30:30 PM 일때
