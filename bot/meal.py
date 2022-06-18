@@ -18,8 +18,12 @@ async def meal_parser(m_s_code, date):
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
 
+    # date의 값이 없을경우 pass
+    if date is None:
+        pass
+
     # date의 값이 있을경우 mlsv_ymd를 사용자가 입력한 값으로 설정
-    if date != None:
+    if date is not None:
         mlsv_ymd = date
         y = date[:-4]
         m = date[-4:-2]
