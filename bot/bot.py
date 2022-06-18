@@ -2,7 +2,7 @@ from discord import Embed
 from discord.ext import commands, tasks
 from datetime import datetime
 from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
-from meal import today_meal, meal_noti
+from meal import lunch, dinner, meal_noti
 from bus import bus_home, bus_school
 from weather import weather
 from schedule import school_schedule
@@ -412,9 +412,14 @@ async def 시간표(ctx):
 
 
 # 오늘급식 or 사용자가 입력한 날짜의 급식
-@bot.command(aliases=["오늘급식"])
+@bot.command(aliases=["오늘급식"], invoke_without_command=True)
 async def 급식(ctx, *, msg=None):
-    await today_meal(ctx, msg)
+    await lunch(ctx, msg)
+
+
+@bot.command()
+async def 석식(ctx, *, msg=None):
+    await dinner(ctx, msg)
 
 
 # 집버스
