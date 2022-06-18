@@ -115,6 +115,10 @@ async def lunch(ctx, msg):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
+async def dinner(ctx, msg):
+    pass
+
+
 # 특정 채널로 급식(중식)정보 보내기
 async def meal_noti(bot, m_s_code):
     date = None
