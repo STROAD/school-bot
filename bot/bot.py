@@ -290,7 +290,7 @@ async def 급식(ctx):
     today = datetime.now().strftime("%Y%m%d")
 
     embed = Embed(
-        title="***도움말(급식 명령어)***", description="사용법: `!급식 [날짜]`", colour=0xFFFF8D
+        title="***도움말(급식 명령어)***", description="사용법: `!급식 [석식] [날짜]`", colour=0xFFFF8D
     )
     embed.add_field(
         name="상세정보",
