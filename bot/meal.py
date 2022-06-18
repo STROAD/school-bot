@@ -72,28 +72,20 @@ async def meal_parser(m_s_code, date):
     return meal, msm, y, m, d
 
 
-# 오늘급식 or 사용자가 입력한 날짜의 급식
+# 중식
 async def lunch(ctx, msg):
-    # 기본적으로 date의 값이 없도록 설정
-    date = None
-
-    # `!급식` 뒤에 날짜를 입력하지 않았을 경우
-    if msg == None:
-        m_s_code = "2"
-
-    # `!급식` 뒤에 석식을 입력했을 경우
-    elif msg == "석식":
-        m_s_code = "3"
+    m_s_code = "2"
+    if msg is None:
+        date = None
 
     # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
     elif (
-        msg != None
+        msg is not None
         and (0 < int(msg[-4:-2]) < 13)
         and (0 < int(msg[-2:]) < 32)
         and (len(msg) == 6 or len(msg) == 8)
     ):
         # 사용자가 입력한 날짜로 설정
-        m_s_code = "2"
         date = msg
 
     # 잘못된 날짜를 입력하면 오류 메시지를 출력
@@ -115,6 +107,7 @@ async def lunch(ctx, msg):
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
+# 석식
 async def dinner(ctx, msg):
     pass
 
