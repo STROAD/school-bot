@@ -182,7 +182,7 @@ async def on_ready():
 
 
 # 도움말
-@bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
+@bot.group(aliases=["Help", "도움말"], invoke_without_command=True)
 async def help(ctx):
     embed = Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
@@ -294,7 +294,7 @@ async def 급식(ctx):
     )
     embed.add_field(
         name="상세정보",
-        value="오늘의 급식, 내일의 급식 혹은 사용자가 입력한 날짜의 급식(중식)을 확인할 수 있습니다.\n\n\
+        value="오늘의 급식 혹은 사용자가 입력한 날짜의 급식(중식, 석식)을 확인할 수 있습니다.\n\n\
 `!오늘급식` 명령어를 통해 오늘의 급식(중식)을 확인할 수 있습니다.\n\
 `!오늘급식 석식` 명령어를 통해 오늘의 급식(석식)을 확인할 수 있습니다.",
         inline=False,
