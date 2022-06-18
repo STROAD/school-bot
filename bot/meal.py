@@ -73,7 +73,7 @@ async def meal_parser(m_s_code, date):
 
 
 # 오늘급식 or 사용자가 입력한 날짜의 급식
-async def today_meal(ctx, msg):
+async def lunch(ctx, msg):
     # 기본적으로 date의 값이 없도록 설정
     date = None
 
