@@ -109,7 +109,37 @@ async def lunch(ctx, msg):
 
 # 석식
 async def dinner(ctx, msg):
-    pass
+    m_s_code = "3"
+    if msg is None:
+        date = None
+
+    # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
+    elif (
+        msg is not None
+        and (0 < int(msg[-4:-2]) < 13)
+        and (0 < int(msg[-2:]) < 32)
+        and (len(msg) == 6 or len(msg) == 8)
+    ):
+        # 사용자가 입력한 날짜로 설정
+        date = msg
+
+    # 잘못된 날짜를 입력하면 오류 메시지를 출력
+    else:
+        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
+
+        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+
+    # meal_parser함수 실행
+    meal, msm, y, m, d = await meal_parser(m_s_code, date)
+
+    embed = Embed(
+        title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
+    )
+    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+    embed.set_footer(text=f"{msm}")
+
+    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 특정 채널로 급식(중식)정보 보내기
