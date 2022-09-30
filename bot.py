@@ -1,11 +1,7 @@
 from discord import Embed
-from discord.ext import commands, tasks
+from discord.ext import commands
 from datetime import datetime
 from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
-from meal import lunch, dinner, meal_noti
-from bus import bus_home, bus_school
-from weather import weather
-from schedule import school_schedule
 
 
 """API 정보
@@ -411,71 +407,4 @@ async def 시간표(ctx):
     await ctx.send(schedule)
 
 
-# 중식
-@bot.command(aliases=["오늘급식"], invoke_without_command=True)
-async def 급식(ctx, *, msg=None):
-    await lunch(ctx, msg)
-
-
-# 석식
-@bot.command()
-async def 석식(ctx, *, msg=None):
-    await dinner(ctx, msg)
-
-
-# 집버스
-@bot.command(aliases=["집", "ㅈ"])
-async def 집버스(ctx):
-    await bus_home(ctx)
-
-
-# 학교버스
-@bot.command(aliases=["학교", "ㅎㄱ"])
-async def 학교버스(ctx):
-    await bus_school(ctx)
-
-
-# 날씨
-@bot.command(aliases=["ㄴㅆ"])
-async def 날씨(ctx):
-    await weather(ctx)
-
-
-# 학사일정
-@bot.command(aliases=["ㅎㅅㅇㅈ"])
-async def 학사일정(ctx):
-    await school_schedule(ctx)
-
-
-# 특정 시간에 급식(중식, 석식)정보 보내기
-@tasks.loop(seconds=1)
-async def meal_Notification():
-    # 월~금 요일의 12:30:30 PM 일때
-    if (
-        datetime.now().strftime("%p") == "PM"
-        and 0 <= datetime.now().weekday() < 5
-        and datetime.now().hour == 12
-        and datetime.now().minute == 30
-        and datetime.now().second == 30
-    ):
-        m_s_code = "2"
-
-        # meal_noti함수 실행
-        await meal_noti(bot, m_s_code)
-
-    # 월~금 요일의 18:30:00 PM 일때
-    if (
-        datetime.now().strftime("%p") == "PM"
-        and 0 <= datetime.now().weekday() < 5
-        and datetime.now().hour == 18
-        and datetime.now().minute == 30
-        and datetime.now().second == 00
-    ):
-        m_s_code = "3"
-
-        # meal_noti함수 실행
-        await meal_noti(bot, m_s_code)
-
-
-meal_Notification.start()
 bot.run(TOKEN)
