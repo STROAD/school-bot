@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from datetime import datetime
-from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
+from config import TOKEN, APPLICATION_ID, bot_status, bot_activity, schedule, GITHUB
 
 
 """API 정보
