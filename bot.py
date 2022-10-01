@@ -199,19 +199,8 @@ class School_Bot(commands.Bot):
 bot = School_Bot()
 
 
-# 명령어 접두어
-bot = commands.Bot(command_prefix="!", help_command=None)
-
-
-# 봇 시작
-@bot.event
-async def on_ready():
-    await bot.change_presence(status=bot_status, activity=bot_activity)
-    print(f"{bot.user.name}({bot.user.id}) 연결 완료")
-
-
 # 도움말
-@bot.group(aliases=["Help", "도움말"], invoke_without_command=True)
+@bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
 async def help(ctx):
     embed = discord.Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
