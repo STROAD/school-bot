@@ -170,6 +170,13 @@ intents = discord.Intents.all()
 intents.messages = True
 
 
+class School_Bot(commands.Bot):
+    pass
+
+
+bot = School_Bot()
+
+
 # 명령어 접두어
 bot = commands.Bot(command_prefix="!", help_command=None)
 
