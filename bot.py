@@ -171,7 +171,14 @@ intents.messages = True
 
 
 class School_Bot(commands.Bot):
-    pass
+    def __init__(self):
+        super().__init__(
+            command_prefix="!",
+            intents=intents,
+            sync_command=True,
+            application_id=APPLICATION_ID,
+            help_command=None,
+        )
 
 
 bot = School_Bot()
