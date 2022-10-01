@@ -1,4 +1,4 @@
-from discord import Embed
+import discord
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from requests import get
@@ -58,7 +58,7 @@ async def schedule_parser():
         df = df[df["evn_nm"] != "토요휴업일"]
         df = df.reset_index(drop=True)
 
-        embed = Embed(
+        embed = discord.Embed(
             title=f"🗓️ **{schul_nm} 학사일정** 🗓️",
             description=f"**행사명\n행사일**",
             colour=0xCE93D8,
@@ -75,7 +75,7 @@ async def schedule_parser():
 
     # 학사일정이 없을경우
     if result_code == "INFO-200":
-        embed = Embed(
+        embed = discord.Embed(
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 

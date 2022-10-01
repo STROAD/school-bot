@@ -1,4 +1,4 @@
-from discord import Embed
+import discord
 from requests import get
 from xml.etree.ElementTree import fromstring
 from config import OPEN_API_KEY
@@ -72,7 +72,7 @@ async def bus_home(ctx):
     cnt, nodenm, second, minute, bus_chk = await bus_parser(nodeid, routeid)
 
     if bus_chk == True:
-        embed = Embed(
+        embed = discord.Embed(
             title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784
         )
         embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
@@ -82,7 +82,7 @@ async def bus_home(ctx):
         )
 
     elif bus_chk == False:
-        embed = Embed(
+        embed = discord.Embed(
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 
@@ -97,7 +97,7 @@ async def bus_school(ctx):
     cnt, nodenm, second, minute, bus_chk = await bus_parser(nodeid, routeid)
 
     if bus_chk == True:
-        embed = Embed(
+        embed = discord.Embed(
             title="🚍 ***버스 도착 정보***  🚍", description="\u200B", colour=0x81C784
         )
         embed.add_field(name="**버스 정보**", value="#수정하기#", inline=False)
@@ -107,7 +107,7 @@ async def bus_school(ctx):
         )
 
     elif bus_chk == False:
-        embed = Embed(
+        embed = discord.Embed(
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 

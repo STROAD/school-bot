@@ -1,4 +1,4 @@
-from discord import Embed
+import discord
 from datetime import datetime
 from requests import get
 from xml.etree.ElementTree import fromstring
@@ -90,7 +90,7 @@ async def lunch(ctx, msg):
 
     # 잘못된 날짜를 입력하면 오류 메시지를 출력
     else:
-        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed = discord.Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
         embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
@@ -98,7 +98,7 @@ async def lunch(ctx, msg):
     # meal_parser함수 실행
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
-    embed = Embed(
+    embed = discord.Embed(
         title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
@@ -125,7 +125,7 @@ async def dinner(ctx, msg):
 
     # 잘못된 날짜를 입력하면 오류 메시지를 출력
     else:
-        embed = Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
+        embed = discord.Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
         embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
@@ -133,7 +133,7 @@ async def dinner(ctx, msg):
     # meal_parser함수 실행
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
-    embed = Embed(
+    embed = discord.Embed(
         title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
@@ -149,7 +149,7 @@ async def meal_noti(bot, m_s_code):
     # meal_parser함수 실행
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
-    embed = Embed(
+    embed = discord.Embed(
         title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
     )
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)

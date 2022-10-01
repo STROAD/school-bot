@@ -1,4 +1,4 @@
-from discord import Embed
+import discord
 from datetime import datetime, timedelta
 import requests
 from re import sub
@@ -133,11 +133,13 @@ async def weather(ctx):
 
     # 정상적으로 호출되지 못했을 경우
     else:
-        embed = Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
+        embed = discord.Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
 
         await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
-    embed = Embed(title="🏞️ ***날씨 정보***  🏞️", description="#수정하기#동", colour=0x2196F3)
+    embed = discord.Embed(
+        title="🏞️ ***날씨 정보***  🏞️", description="#수정하기#동", colour=0x2196F3
+    )
     embed.add_field(name="***기온***  🌡️", value=f"{tmp}°C")
     embed.add_field(name="***습도***  💧", value=f"{reh}%")
     embed.add_field(name=f"***하늘***  {sem}", value=f"{sky}")

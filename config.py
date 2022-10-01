@@ -1,4 +1,4 @@
-from discord import Status, Activity, ActivityType
+import discord
 
 
 # 토큰
@@ -6,8 +6,8 @@ TOKEN = ""  # 이곳에 자신의 디스코드 봇 토큰 넣기
 
 
 # 디스코드 봇 상태 설정
-bot_status = Status.online
-bot_activity = Activity(type=ActivityType.listening, name="!도움말, !help")
+bot_status = discord.Status.online
+bot_activity = discord.Activity(type=discord.ActivityType.listening, name="!도움말, !help")
 
 
 # 인증키

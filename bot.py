@@ -1,4 +1,4 @@
-from discord import Embed
+import discord
 from discord.ext import commands
 from datetime import datetime
 from config import TOKEN, bot_status, bot_activity, schedule, GITHUB
@@ -180,7 +180,7 @@ async def on_ready():
 # 도움말
 @bot.group(aliases=["Help", "도움말"], invoke_without_command=True)
 async def help(ctx):
-    embed = Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
+    embed = discord.Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
     embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
     embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
     embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
@@ -198,7 +198,7 @@ async def help(ctx):
 # 정보 명령어 도움말
 @help.command(aliases=["Info", "정보"])
 async def info(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(정보 명령어)***",
         description="사용법: `!정보` or `!info`",
         colour=0xFFFF8D,
@@ -215,7 +215,7 @@ async def info(ctx):
 # 안녕 명령어 도움말
 @help.command(aliases=["Hi", "안녕", "반가워"])
 async def hi(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(안녕 명령어)***",
         description="사용법: `!안녕` or `!hi`",
         colour=0xFFFF8D,
@@ -232,7 +232,7 @@ async def hi(ctx):
 # 현재시간 명령어 도움말
 @help.command(aliases=["Time", "현재시간", "시간"])
 async def time(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(현재시간 명령어)***",
         description="사용법: `!현재시간` or `!time`",
         colour=0xFFFF8D,
@@ -249,7 +249,7 @@ async def time(ctx):
 # 지연시간 확인 명령어 도움말
 @help.command(aliases=["Ping", "핑"])
 async def ping(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(지연시간 확인 명령어)***",
         description="사용법: `!핑` or `!time`",
         colour=0xFFFF8D,
@@ -266,7 +266,7 @@ async def ping(ctx):
 # 시간표 명령어 도움말
 @help.command()
 async def 시간표(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(시간표 명령어)***",
         description="사용법: `!시간표`",
         colour=0xFFFF8D,
@@ -285,7 +285,7 @@ async def 시간표(ctx):
 async def 급식(ctx):
     today = datetime.now().strftime("%Y%m%d")
 
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(급식 명령어)***", description="사용법: `!급식 [석식] [날짜]`", colour=0xFFFF8D
     )
     embed.add_field(
@@ -303,7 +303,7 @@ async def 급식(ctx):
 # 버스 도착 정보 확인 명령어 도움말
 @help.command(aliases=["집버스", "학교버스"])
 async def 버스(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(버스 도착 정보 확인 명령어)***",
         description="사용법: `!집버스` or `!학교버스`",
         colour=0xFFFF8D,
@@ -321,7 +321,7 @@ async def 버스(ctx):
 # 날씨정보 확인 명령어 도움말
 @help.command()
 async def 날씨(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(날씨정보 확인 명령어)***",
         description="사용법: `!날씨`",
         colour=0xFFFF8D,
@@ -338,7 +338,7 @@ async def 날씨(ctx):
 # 학사일정 확인 명령어 도움말
 @help.command(aliases=["ㅎㅅㅇㅈ"])
 async def 학사일정(ctx):
-    embed = Embed(
+    embed = discord.Embed(
         title="***도움말(학사일정 확인 명령어)***",
         description="사용법: `!학사일정`",
         colour=0xFFFF8D,
@@ -356,7 +356,7 @@ async def 학사일정(ctx):
 # 정보
 @bot.command(aliases=["정보"])
 async def info(ctx):
-    embed = Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
+    embed = discord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
     embed.add_field(name="School_Bot", value="급식, 버스, 날씨정보 확인가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GITHUB}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
