@@ -179,6 +179,17 @@ class School_Bot(commands.Bot):
             application_id=APPLICATION_ID,
             help_command=None,
         )
+        self.initial_extension = [
+            "cogs.bus",
+            "cogs.meal",
+            "cogs.schedule",
+            "cogs.weather",
+        ]
+
+    async def setup_hook(self):
+        for ext in self.initial_extension:
+            await self.load_extension(ext)
+        await bot.tree.sync()
 
 
 bot = School_Bot()
