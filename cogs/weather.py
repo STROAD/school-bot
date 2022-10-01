@@ -7,12 +7,35 @@ from re import sub
 from config import OPEN_API_KEY
 
 
+class Weather(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print("Weather cog loaded.")
+
+    @commands.command()
+    async def sync(self, ctx) -> None:
+        fmt = await ctx.bot.tree.sync()
+        await ctx.send(f"Synced {len(fmt)} commands.")
+        return
+
+    @app_commands.command(name="날씨", description="날씨 정보 확인")
+    async def weather(self, interaction: discord.Interaction):
+        await weather_parser(self, interaction)
+
+
+async def setup(bot):
+    await bot.add_cog(Weather(bot))
+
+
 # 날씨 API URL
 weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
 
 
 # 날씨
-async def weather_parser(ctx):
+async def weather_parser(self, interaction):
     # 날짜, 시간 구하기
     now_date = int(datetime.now().strftime("%Y%m%d"))
     now_hour = int(datetime.now().strftime("%H"))
@@ -137,7 +160,7 @@ async def weather_parser(ctx):
     else:
         embed = discord.Embed(title="오류!", description="잠시후 다시 시도해주시기 바랍니다.")
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+        await interaction.response.send_message(embed=embed)
 
     embed = discord.Embed(
         title="🏞️ ***날씨 정보***  🏞️", description="#수정하기#동", colour=0x2196F3
@@ -156,4 +179,4 @@ async def weather_parser(ctx):
     if sno != "적설없음":
         embed.add_field(name="***적설량***  ❄️", value=f"{sno}")
 
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await interaction.response.send_message(embed=embed)
