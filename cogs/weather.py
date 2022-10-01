@@ -15,12 +15,6 @@ class Weather(commands.Cog):
     async def on_ready(self):
         print("Weather cog loaded.")
 
-    @commands.command()
-    async def sync(self, ctx) -> None:
-        fmt = await ctx.bot.tree.sync()
-        await ctx.send(f"Synced {len(fmt)} commands.")
-        return
-
     @app_commands.command(name="날씨", description="날씨 정보 확인")
     async def weather(self, interaction: discord.Interaction):
         await weather_parser(self, interaction)
