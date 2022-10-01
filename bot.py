@@ -166,6 +166,10 @@ AA_YMD            = 학사일자
 """
 
 
+intents = discord.Intents.all()
+intents.messages = True
+
+
 # 명령어 접두어
 bot = commands.Bot(command_prefix="!", help_command=None)
 
