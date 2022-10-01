@@ -10,6 +10,23 @@ from re import sub
 from config import NIES_KEY
 
 
+class Schedule(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print("Schedule cog loaded.")
+
+    @app_commands.command(name="학사일정", description="1달간의 학사일정을 확인할 수 있습니다.")
+    async def schedule(self, interaction: discord.Interaction):
+        await school_schedule(self, interaction)
+
+
+async def setup(bot):
+    await bot.add_cog(Schedule(bot))
+
+
 # 학사일정 API URL
 schedule_url = "https://open.neis.go.kr/hub/SchoolSchedule"
 
@@ -85,7 +102,7 @@ async def schedule_parser():
 
 
 # 학사일정
-async def school_schedule(ctx):
+async def school_schedule(self, interaction):
     embed = await schedule_parser()
 
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await interaction.response.send_message(embed=embed)
