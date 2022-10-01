@@ -8,6 +8,40 @@ from re import sub
 from config import NIES_KEY
 
 
+def date_now():
+    return datetime.now().strftime("%Y%m%d")
+
+
+class Meal(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print("Meal cog loaded.")
+
+    @app_commands.command(name="급식", description="급식 식단 정보 확인")
+    @app_commands.describe(meals="어느 식단을 확인하시겠습니까?")
+    @app_commands.choices(
+        meals=[
+            discord.app_commands.Choice(name="중식", value=1),
+            discord.app_commands.Choice(name="석식", value=2),
+        ]
+    )
+    @app_commands.describe(date="날짜를 입력해주세요. (YYYYMMDD)")
+    async def meal(
+        self,
+        interaction: discord.Interaction,
+        meals: discord.app_commands.Choice[int],
+        date: str = date_now(),
+    ):
+        await prt_meal(self, interaction, meals.value, date)
+
+
+async def setup(bot):
+    await bot.add_cog(Meal(bot))
+
+
 # 급식 API URL
 meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 
@@ -15,28 +49,22 @@ meal_url = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 # 급식정보 가져오기
 async def meal_parser(m_s_code, date):
     # 현재 날짜 구하기
-    mlsv_ymd = datetime.now().strftime("%Y%m%d")
     y = datetime.now().strftime("%Y")
     m = datetime.now().strftime("%m")
     d = datetime.now().strftime("%d")
 
-    # date의 값이 없을경우 pass
-    if date is None:
+    # 사용자 입력값으로 설정
+    mlsv_ymd = date
+    y = date[:-4]
+    m = date[-4:-2]
+    d = date[-2:]
+
+    # 년도를 2글자만 썼을경우 앞에 20을 붙여줌
+    if len(y) == 2:
+        y = "20" + y
+    # 4글자 모두 입력했으면 pass
+    elif len(y) == 4:
         pass
-
-    # date의 값이 있을경우 mlsv_ymd를 사용자가 입력한 값으로 설정
-    if date is not None:
-        mlsv_ymd = date
-        y = date[:-4]
-        m = date[-4:-2]
-        d = date[-2:]
-
-        # 년도를 2글자만 썼을경우 앞에 20을 붙여줌
-        if len(y) == 2:
-            y = "20" + y
-        # 4글자 모두 입력했으면 pass
-        elif len(y) == 4:
-            pass
 
     # 급식 파라미터
     meal_params = {
@@ -74,30 +102,26 @@ async def meal_parser(m_s_code, date):
     return meal, msm, y, m, d
 
 
-# 중식
-async def prt_meal(ctx, msg):
-    m_s_code = "2"
-    if msg is None:
-        date = None
+# 급식 정보 출력
+async def prt_meal(self, interaction, meals, date):
+    if meals == 1:
+        m_s_code = "2"
+    else:
+        m_s_code = "3"
 
-    # `!급식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
-    elif (
-        msg is not None
-        and (0 < int(msg[-4:-2]) < 13)
-        and (0 < int(msg[-2:]) < 32)
-        and (len(msg) == 6 or len(msg) == 8)
+    if (
+        (0 < int(date[-4:-2]) < 13)
+        and (0 < int(date[-2:]) < 32)
+        and (len(date) == 6 or len(date) == 8)
     ):
-        # 사용자가 입력한 날짜로 설정
-        date = msg
+        date = date
 
-    # 잘못된 날짜를 입력하면 오류 메시지를 출력
     else:
         embed = discord.Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
-        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
+        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {date}", inline=False)
 
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+        await interaction.response.send_message(embed=embed)
 
-    # meal_parser함수 실행
     meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
     embed = discord.Embed(
@@ -106,42 +130,7 @@ async def prt_meal(ctx, msg):
     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
     embed.set_footer(text=f"{msm}")
 
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
-
-
-# 석식
-async def dinner(ctx, msg):
-    m_s_code = "3"
-    if msg is None:
-        date = None
-
-    # `!급식 석식` 뒤에 날짜를 입력했고 그 길이가 6자 혹은 8자 일 경우
-    elif (
-        msg is not None
-        and (0 < int(msg[-4:-2]) < 13)
-        and (0 < int(msg[-2:]) < 32)
-        and (len(msg) == 6 or len(msg) == 8)
-    ):
-        # 사용자가 입력한 날짜로 설정
-        date = msg
-
-    # 잘못된 날짜를 입력하면 오류 메시지를 출력
-    else:
-        embed = discord.Embed(title=f"***오류!***", description="\u200B", colour=0xB0BEC5)
-        embed.add_field(name="**잘못된 값을 입력하였습니다.**", value=f"입력값 : {msg}", inline=False)
-
-        await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
-
-    # meal_parser함수 실행
-    meal, msm, y, m, d = await meal_parser(m_s_code, date)
-
-    embed = discord.Embed(
-        title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
-    )
-    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
-    embed.set_footer(text=f"{msm}")
-
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await interaction.response.send_message(embed=embed)
 
 
 # 특정 채널로 급식(중식)정보 보내기
