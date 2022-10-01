@@ -191,6 +191,10 @@ class School_Bot(commands.Bot):
             await self.load_extension(ext)
         await bot.tree.sync()
 
+    async def on_ready(self):
+        await self.change_presence(status=bot_status, activity=bot_activity)
+        print(f"{self.user.name}({self.user.id}) 연결 완료")
+
 
 bot = School_Bot()
 
