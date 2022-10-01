@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/">
-    <img src="https://img.shields.io/badge/python-3.10.6-3776AB?style=flat&logo=python&logoColor=yellow">
+    <img src="https://img.shields.io/badge/python-3.10.7-3776AB?style=flat&logo=python&logoColor=yellow">
   </a>
   <a href="https://github.com/Rapptz/discord.py/">
      <img src="https://img.shields.io/badge/discord-py-blue.svg" alt="discord.py">
@@ -20,7 +20,7 @@
 </p>
 
 
-school bot은 [Python](https://www.python.org) 3.10.6에서 [discord.py](https://github.com/Rapptz/discord.py) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
+school bot은 [Python](https://www.python.org) 3.10.7에서 [discord.py](https://github.com/Rapptz/discord.py) 라이브러리를 사용하여 만들어진 디스코드 봇 입니다.  
 (사용한 Open API : [급식식단정보](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17320190722180924242823&infSeq=2), [학사일정](https://open.neis.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=OPEN17220190722175038389180&infSeq=1), [국토교통부_(TAGO)_버스도착정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098530), [기상청_단기예보 ((구)_동네예보) 조회서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084))
 
 
@@ -39,8 +39,8 @@ school bot은 [Python](https://www.python.org) 3.10.6에서 [discord.py](https:/
 
 
 ## 설치
-1. [Python](https://www.python.org)(3.10.6) 설치  
-    (3.10.6 이외의 버전에서는 작동이 안될 수 있습니다.)
+1. [Python](https://www.python.org)(3.10.7) 설치  
+    (3.10.7 이외의 버전에서는 작동이 안될 수 있습니다.)
 
 2. Repository clone  
     이 레포지트리를 clone합니다.  
