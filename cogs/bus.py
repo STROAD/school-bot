@@ -6,6 +6,38 @@ from xml.etree.ElementTree import fromstring
 from config import OPEN_API_KEY
 
 
+class Bus(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print("Bus cog loaded.")
+
+    @app_commands.command(name="버스", description="버스 도착 정보 확인")
+    @app_commands.describe(direction="어느 방면의 버스 도착 정보를 확인하시겠습니까?")
+    @app_commands.choices(
+        direction=[
+            discord.app_commands.Choice(name="집", value=1),
+            discord.app_commands.Choice(name="학교", value=2),
+        ]
+    )
+    async def bus(
+        self,
+        interaction: discord.Interaction,
+        direction: discord.app_commands.Choice[int],
+    ):
+        if direction.value == 1:
+            await bus_home(self, interaction)
+
+        if direction.value == 2:
+            await bus_school(self, interaction)
+
+
+async def setup(bot):
+    await bot.add_cog(Bus(bot))
+
+
 # 버스 API URL
 Bus_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoSpcifyRouteBusArvlPrearngeInfoList"
 
@@ -67,7 +99,7 @@ async def bus_parser(nodeid, routeid):
 
 
 # 집버스
-async def bus_home(ctx):
+async def bus_home(self, interaction):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
@@ -88,11 +120,11 @@ async def bus_home(ctx):
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await interaction.response.send_message(embed=embed)
 
 
 # 학교 버스
-async def bus_school(ctx):
+async def bus_school(self, interaction):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
@@ -113,4 +145,4 @@ async def bus_school(ctx):
             title="오류가 발생했습니다.", description="잠시 후 다시 시도해주세요.", colour=0xFF1744
         )
 
-    await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
+    await interaction.response.send_message(embed=embed)
