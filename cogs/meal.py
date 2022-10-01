@@ -75,7 +75,7 @@ async def meal_parser(m_s_code, date):
 
 
 # 중식
-async def lunch(ctx, msg):
+async def prt_meal(ctx, msg):
     m_s_code = "2"
     if msg is None:
         date = None
