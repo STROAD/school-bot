@@ -62,7 +62,8 @@ async def schedule_parser():
         # 학교 이름 찾기
         schul_nm = schedule_xml.findtext(".//SCHUL_NM")
         # 데이터 프레임 생성
-        df = DataFrame([], columns=["aa_ymd", "evn_nm"])
+        df = DataFrame(columns=["aa_ymd", "evn_nm"])
+        c = 0
 
         # 행사명, 행사일자 찾기
         for value in schedule_xml.iter("row"):
@@ -70,8 +71,8 @@ async def schedule_parser():
             aa_ymd = value.findtext("AA_YMD")
 
             # 데이터 프레임에 행사명, 행사일자 넣기
-            data = {"evn_nm": f"{evn_nm}", "aa_ymd": f"{aa_ymd}"}
-            df = df.append(data, ignore_index=True)
+            df.loc[c] = [aa_ymd, evn_nm]
+            c += 1
 
         # 행사명이 토요휴업일인 행은 삭제
         df = df[df["evn_nm"] != "토요휴업일"]
