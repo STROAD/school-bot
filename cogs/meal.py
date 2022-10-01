@@ -1,4 +1,6 @@
 import discord
+from discord import app_commands
+from discord.ext import commands
 from datetime import datetime
 from requests import get
 from xml.etree.ElementTree import fromstring
