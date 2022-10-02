@@ -29,7 +29,8 @@ school bot은 [Python](https://www.python.org) 3.10.7에서 [discord.py](https:/
 
 ## 주요기능
 * 급식(중식, 석식) 보기
-* 버스 도착시간 보기
+* 급식정보 알림 기능
+* 버스 도착 예정 시간 보기
 * 날씨정보 확인
 * 학사일정 확인
 
