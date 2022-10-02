@@ -210,10 +210,10 @@ async def help(ctx):
     embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
     embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
     embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
-    embed.add_field(name="6. **급식정보 확인**", value="`!급식\n!오늘급식`", inline=False)
-    embed.add_field(name="7. **버스 도착 정보 확인**", value="`!집버스\n!학교버스`", inline=False)
-    embed.add_field(name="8. **날씨정보 확인**", value="`!날씨`", inline=False)
-    embed.add_field(name="9. **학사일정 확인**", value="`!학사일정`", inline=False)
+    embed.add_field(name="6. **급식정보 확인**", value="`/급식`", inline=False)
+    embed.add_field(name="7. **버스 도착 정보 확인**", value="`/버스`", inline=False)
+    embed.add_field(name="8. **날씨정보 확인**", value="`/날씨`", inline=False)
+    embed.add_field(name="9. **학사일정 확인**", value="`/학사일정`", inline=False)
     embed.set_footer(text="!도움말 [명령어]로 해당 명령어 상세정보 확인가능")
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
@@ -305,37 +305,40 @@ async def 시간표(ctx):
 
 
 # 급식 명령어 도움말
-@help.command(aliases=["오늘급식"])
+@help.command()
 async def 급식(ctx):
     today = datetime.now().strftime("%Y%m%d")
 
     embed = discord.Embed(
-        title="***도움말(급식 명령어)***", description="사용법: `!급식 [석식] [날짜]`", colour=0xFFFF8D
+        title="***도움말(급식 명령어)***",
+        description="사용법: `/급식 [필수: meals] [선택: date]`",
+        colour=0xFFFF8D,
     )
     embed.add_field(
         name="상세정보",
         value="오늘의 급식 혹은 사용자가 입력한 날짜의 급식(중식, 석식)을 확인할 수 있습니다.\n\n\
-`!오늘급식` 명령어를 통해 오늘의 급식(중식)을 확인할 수 있습니다.\n\
-`!오늘급식 석식` 명령어를 통해 오늘의 급식(석식)을 확인할 수 있습니다.",
+[date] 미선택 시 오늘의 급식을 확인합니다.\n\
+[date]는 YYYYMMDD 형식으로 입력해야합니다.",
         inline=False,
     )
-    embed.add_field(name="**예시**", value=f"`!급식 {today}`", inline=False)
+    embed.add_field(
+        name="**예시**", value=f"`/급식 [meals: 중식] [date: {today}]`", inline=False
+    )
 
     await ctx.send(embed=embed, reference=ctx.message, mention_author=False)
 
 
 # 버스 도착 정보 확인 명령어 도움말
-@help.command(aliases=["집버스", "학교버스"])
+@help.command()
 async def 버스(ctx):
     embed = discord.Embed(
         title="***도움말(버스 도착 정보 확인 명령어)***",
-        description="사용법: `!집버스` or `!학교버스`",
+        description="사용법: `/버스 [필수: direction]`",
         colour=0xFFFF8D,
     )
     embed.add_field(
         name="상세정보",
-        value="`!집버스` 명령어로 집으로 가장 가까운 가는 버스의 도착 예정 정보를 확인할 수 있습니다.\n\
-`!학교버스` 명령어로 학교로 가는 가장 가까운 버스의 도착 예정 정보를 확인할 수 있습니다.",
+        value="선택한 방면의 버스 도착 예정 정보를 확인할 수 있습니다.",
         inline=False,
     )
 
@@ -347,7 +350,7 @@ async def 버스(ctx):
 async def 날씨(ctx):
     embed = discord.Embed(
         title="***도움말(날씨정보 확인 명령어)***",
-        description="사용법: `!날씨`",
+        description="사용법: `/날씨`",
         colour=0xFFFF8D,
     )
     embed.add_field(
@@ -364,7 +367,7 @@ async def 날씨(ctx):
 async def 학사일정(ctx):
     embed = discord.Embed(
         title="***도움말(학사일정 확인 명령어)***",
-        description="사용법: `!학사일정`",
+        description="사용법: `/학사일정`",
         colour=0xFFFF8D,
     )
     embed.add_field(
