@@ -133,17 +133,17 @@ async def prt_meal(self, interaction, meals, date):
     await interaction.response.send_message(embed=embed)
 
 
-# # 특정 채널로 급식(중식)정보 보내기
-# async def meal_noti(bot, m_s_code):
-#     date = None
+# 특정 채널로 급식정보 보내기
+async def meal_noti(bot, m_s_code):
+    date = datetime.now().strftime("%Y%m%d")
 
-#     # meal_parser함수 실행
-#     meal, msm, y, m, d = await meal_parser(m_s_code, date)
+    # meal_parser함수 실행
+    meal, msm, y, m, d = await meal_parser(m_s_code, date)
 
-#     embed = discord.Embed(
-#         title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
-#     )
-#     embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
-#     embed.set_footer(text=f"{msm}")
+    embed = discord.Embed(
+        title=f"🍽️ ***{y}년 {m}월 {d}일 급식***  🍽️", description="\u200B", colour=0xB0BEC5
+    )
+    embed.add_field(name=f"**{meal}**", value="\u200B", inline=False)
+    embed.set_footer(text=f"{msm}")
 
-#     await bot.get_channel("#수정하기#").send(embed=embed)
+    await bot.get_channel("#수정하기# -> int").send(embed=embed)
