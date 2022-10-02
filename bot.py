@@ -166,8 +166,9 @@ AA_YMD            = 학사일자
 """
 
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()
 intents.messages = True
+intents.message_content = True
 
 
 class School_Bot(commands.Bot):
