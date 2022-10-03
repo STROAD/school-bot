@@ -275,7 +275,7 @@ async def time(ctx):
 async def ping(ctx):
     embed = discord.Embed(
         title="***도움말(지연시간 확인 명령어)***",
-        description="사용법: `!핑` or `!time`",
+        description="사용법: `!핑` or `!ping`",
         colour=0xFFFF8D,
     )
     embed.add_field(
