@@ -394,13 +394,13 @@ async def info(ctx: commands.Context):
 
 # 인사
 @bot.hybrid_command(name="안녕", description="인사하기", aliases=["Hi", "hi", "반가워"])
-async def hi(ctx):
+async def hi(ctx: commands.Context):
     await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**  👋")
 
 
 # 시간
 @bot.hybrid_command(name="시간", description="현재시간 확인", aliases=["Time", "시간", "현재시간"])
-async def time(ctx):
+async def time(ctx: commands.Context):
     # 오전 오후 변수
     apm = datetime.now().strftime("%p")
 
@@ -423,9 +423,11 @@ async def time(ctx):
 
 
 # 핑
-@bot.command(aliases=["핑"])
-async def ping(ctx):
-    await ctx.send(f"> **Ping : {round(bot.latency * 1000)}ms**")
+@bot.hybrid_command(
+    name="지연시간", description="봇의 지연시간 확인", aliases=["Ping", "핑", "지연시간"]
+)
+async def ping(ctx: commands.Context):
+    await ctx.send(f"> **지연시간 : {round(bot.latency * 1000)}ms**")
 
 
 # 시간표
