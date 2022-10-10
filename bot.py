@@ -381,10 +381,10 @@ async def 학사일정(ctx):
 
 
 # 정보
-@bot.command(aliases=["정보"])
-async def info(ctx):
+@bot.hybrid_command(name="info", description="School_Bot 정보", aliases=["Info", "정보"])
+async def info(ctx: commands.Context):
     embed = discord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
-    embed.add_field(name="School_Bot", value="급식, 버스, 날씨정보 확인가능", inline=False)
+    embed.add_field(name="School_Bot", value="급식, 버스, 날씨 정보 등 확인 가능", inline=False)
     embed.add_field(name="자세한 정보는", value=f"[여기서]({GITHUB}) 확인 가능", inline=False)
     embed.add_field(name="\u200B", value="\u200B", inline=False)
     embed.add_field(name="*버전* : 5.0.0", value=f"[GitHub]({GITHUB})", inline=False)
