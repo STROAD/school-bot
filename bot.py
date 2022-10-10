@@ -393,9 +393,9 @@ async def info(ctx: commands.Context):
 
 
 # 인사
-@bot.command(aliases=["안녕", "반가워", "Hi"])
+@bot.hybrid_command(name="안녕", description="인사하기", aliases=["Hi", "hi", "반가워"])
 async def hi(ctx):
-    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**  👋", reference=ctx.message)
+    await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**  👋")
 
 
 # 시간
