@@ -204,12 +204,14 @@ bot = School_Bot()
 # 도움말
 @bot.group(invoke_without_command=True, aliases=["Help", "도움말"])
 async def help(ctx):
-    embed = discord.Embed(title="**도움말**", description="명령어 리스트", colour=0xFFFF8D)
-    embed.add_field(name="1. **정보**", value="`!정보\n!info`", inline=False)
-    embed.add_field(name="2. **인사**", value="`!안녕\n!hi`", inline=False)
-    embed.add_field(name="3. **현재시간 확인**", value="`!현재시간\n!time`", inline=False)
-    embed.add_field(name="4. **지연시간 확인**", value="`!핑\n!ping`", inline=False)
-    embed.add_field(name="5. **시간표**", value="`!시간표`", inline=False)
+    embed = discord.Embed(
+        title="**도움말**", description="School_Bot 명령어 목록", colour=0xFFFF8D
+    )
+    embed.add_field(name="1. **정보**", value="`/정보\n!정보 or !info`", inline=False)
+    embed.add_field(name="2. **인사**", value="`/안녕\n!안녕 or !hi`", inline=False)
+    embed.add_field(name="3. **현재시간 확인**", value="`/시간\n!현재시간 or !time`", inline=False)
+    embed.add_field(name="4. **지연시간 확인**", value="`/지연시간\n!핑 or !ping`", inline=False)
+    embed.add_field(name="5. **시간표**", value="`/시간표\n!시간표`", inline=False)
     embed.add_field(name="6. **급식정보 확인**", value="`/급식`", inline=False)
     embed.add_field(name="7. **버스 도착 정보 확인**", value="`/버스`", inline=False)
     embed.add_field(name="8. **날씨정보 확인**", value="`/날씨`", inline=False)
