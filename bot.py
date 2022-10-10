@@ -431,8 +431,8 @@ async def ping(ctx: commands.Context):
 
 
 # 시간표
-@bot.command()
-async def 시간표(ctx):
+@bot.hybrid_command(name="시간표", description="시간표")
+async def 시간표(ctx: commands.Context):
     await ctx.send(schedule)
 
 
