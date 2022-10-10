@@ -381,7 +381,7 @@ async def 학사일정(ctx):
 
 
 # 정보
-@bot.hybrid_command(name="info", description="School_Bot 정보", aliases=["Info", "정보"])
+@bot.hybrid_command(name="정보", description="School_Bot 정보", aliases=["Info", "정보"])
 async def info(ctx: commands.Context):
     embed = discord.Embed(title="***정보***", description="\u200B", colour=0xFFFF8D)
     embed.add_field(name="School_Bot", value="급식, 버스, 날씨 정보 등 확인 가능", inline=False)
@@ -399,7 +399,7 @@ async def hi(ctx):
 
 
 # 시간
-@bot.command(aliases=["시간", "현재시간"])
+@bot.hybrid_command(name="시간", description="현재시간 확인", aliases=["Time", "시간", "현재시간"])
 async def time(ctx):
     # 오전 오후 변수
     apm = datetime.now().strftime("%p")
