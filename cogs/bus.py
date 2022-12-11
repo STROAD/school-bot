@@ -99,7 +99,7 @@ async def bus_parser(nodeid, routeid):
 
 
 # 집버스
-async def bus_home(self, interaction):
+async def bus_home(interaction):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 
@@ -124,7 +124,7 @@ async def bus_home(self, interaction):
 
 
 # 학교 버스
-async def bus_school(self, interaction):
+async def bus_school(interaction):
     nodeid = "#수정하기#"
     routeid = "#수정하기#"
 

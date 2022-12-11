@@ -29,7 +29,7 @@ weather_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilag
 
 
 # 날씨
-async def weather_parser(self, interaction):
+async def weather_parser(interaction):
     # 날짜, 시간 구하기
     now_date = int(datetime.now().strftime("%Y%m%d"))
     now_hour = int(datetime.now().strftime("%H"))

@@ -103,7 +103,7 @@ async def meal_parser(m_s_code, date):
 
 
 # 급식 정보 출력
-async def prt_meal(self, interaction, meals, date):
+async def prt_meal(interaction, meals, date):
     if meals == 1:
         m_s_code = "2"
     else:
