@@ -11,7 +11,7 @@ APPLICATION_ID = int()  # 이곳에 자신의 디스코드 봇 APPLICATION ID �
 
 # 디스코드 봇 상태 설정
 bot_status = discord.Status.online
-bot_activity = discord.Activity(type=discord.ActivityType.listening, name="!도움말, !help")
+bot_activity = discord.Activity(type=discord.ActivityType.listening, name="/도움말")
 
 
 # 인증키
