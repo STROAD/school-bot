@@ -180,6 +180,7 @@ class School_Bot(commands.Bot):
         )
         self.initial_extension = [
             "cogs.bus",
+            "cogs.help",
             "cogs.meal",
             "cogs.noti",
             "cogs.schedule",
