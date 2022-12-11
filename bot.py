@@ -219,7 +219,7 @@ async def hi(ctx: commands.Context):
 
 
 # 시간
-@bot.hybrid_command(name="시간", description="현재시간 확인", aliases=["Time", "시간", "현재시간"])
+@bot.hybrid_command(name="현재시간", description="현재시간 확인", aliases=["Time", "시간", "현재시간"])
 async def time(ctx: commands.Context):
     # 오전 오후 변수
     apm = datetime.now().strftime("%p")
