@@ -28,7 +28,7 @@ class Select_Help(discord.ui.Select):
         if self.values[0] == "정보":
             embed = discord.Embed(
                 title="***도움말(정보 명령어)***",
-                description="사용법: `!정보` or `!info`",
+                description="사용법: `/정보`",
                 colour=0xFFFF8D,
             )
             embed.add_field(
@@ -42,7 +42,7 @@ class Select_Help(discord.ui.Select):
         elif self.values[0] == "인사":
             embed = discord.Embed(
                 title="***도움말(인사 명령어)***",
-                description="사용법: `!안녕` or `!hi`",
+                description="사용법: `/인사`",
                 colour=0xFFFF8D,
             )
             embed.add_field(
@@ -56,7 +56,7 @@ class Select_Help(discord.ui.Select):
         elif self.values[0] == "현재시간":
             embed = discord.Embed(
                 title="***도움말(현재시간 명령어)***",
-                description="사용법: `!현재시간` or `!time`",
+                description="사용법: `/현재시간`",
                 colour=0xFFFF8D,
             )
             embed.add_field(
@@ -70,7 +70,7 @@ class Select_Help(discord.ui.Select):
         elif self.values[0] == "지연시간":
             embed = discord.Embed(
                 title="***도움말(지연시간 확인 명령어)***",
-                description="사용법: `!핑` or `!ping`",
+                description="사용법: `/지연시간`",
                 colour=0xFFFF8D,
             )
             embed.add_field(
@@ -84,7 +84,7 @@ class Select_Help(discord.ui.Select):
         elif self.values[0] == "시간표":
             embed = discord.Embed(
                 title="***도움말(시간표 명령어)***",
-                description="사용법: `!시간표`",
+                description="사용법: `/시간표`",
                 colour=0xFFFF8D,
             )
             embed.add_field(
@@ -111,9 +111,7 @@ class Select_Help(discord.ui.Select):
                 inline=False,
             )
             embed.add_field(
-                name="**예시**",
-                value=f"`/급식 [meals: 중식] [date: {today}]`",
-                inline=False,
+                name="**예시**", value=f"`/급식 [meals: 중식] [date: {today}]`", inline=False
             )
 
             await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -182,8 +180,8 @@ class Help(commands.Cog):
             title="**도움말**", description="School_Bot 명령어 목록", colour=0xFFFF8D
         )
         embed.add_field(name="1. **정보**", value="`/정보`", inline=False)
-        embed.add_field(name="2. **인사**", value="`/안녕`", inline=False)
-        embed.add_field(name="3. **현재시간 확인**", value="`/시간`", inline=False)
+        embed.add_field(name="2. **인사**", value="`/인사`", inline=False)
+        embed.add_field(name="3. **현재시간 확인**", value="`/현재시간`", inline=False)
         embed.add_field(name="4. **지연시간 확인**", value="`/지연시간`", inline=False)
         embed.add_field(name="5. **시간표**", value="`/시간표`", inline=False)
         embed.add_field(name="6. **급식정보 확인**", value="`/급식`", inline=False)

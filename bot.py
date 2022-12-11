@@ -213,7 +213,7 @@ async def info(ctx: commands.Context):
 
 
 # 인사
-@bot.hybrid_command(name="안녕", description="인사하기", aliases=["Hi", "hi", "반가워"])
+@bot.hybrid_command(name="인사", description="인사하기", aliases=["Hi", "hi", "반가워"])
 async def hi(ctx: commands.Context):
     await ctx.send(f"**{ctx.message.author.nick}님 안녕하세요!**  👋")
 
@@ -242,7 +242,7 @@ async def time(ctx: commands.Context):
     )
 
 
-# 핑
+# 지연시간
 @bot.hybrid_command(
     name="지연시간", description="봇의 지연시간 확인", aliases=["Ping", "핑", "지연시간"]
 )
