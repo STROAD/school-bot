@@ -5,7 +5,24 @@ from datetime import datetime
 
 
 class Select_Help(discord.ui.Select):
-    pass
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="정보", description="정보 명령어 도움말"),
+            discord.SelectOption(label="인사", description="인사 명령어 도움말"),
+            discord.SelectOption(label="현재시간", description="현재시간 명령어 도움말"),
+            discord.SelectOption(label="지연시간", description="지연시간 명령어 도움말"),
+            discord.SelectOption(label="시간표", description="시간표 명령어 도움말"),
+            discord.SelectOption(label="급식", description="급식 명령어 도움말"),
+            discord.SelectOption(label="버스", description="버스 명령어 도움말"),
+            discord.SelectOption(label="날씨", description="날씨 명령어 도움말"),
+            discord.SelectOption(label="학사일정", description="학사일정 명령어 도움말"),
+        ]
+        super().__init__(
+            placeholder="도움말을 확인할 명령어를 선택하세요.",
+            max_values=1,
+            min_values=1,
+            options=options,
+        )
 
 
 class SelectView(discord.ui.View):
